@@ -2,6 +2,7 @@ import 'package:appinio_bloc/pages/food_list_page/favorite_food_list_tab/favorit
 import 'package:appinio_bloc/theme.dart';
 import 'package:appinio_bloc/widgets/food_list_item.dart';
 import 'package:appinio_bloc/widgets/loading_placeholder.dart';
+import 'package:appinio_bloc/widgets/order_button.dart';
 import 'package:appinio_bloc/widgets/restaurant_header.dart';
 import 'package:appinio_bloc/widgets/search_persistent_header.dart';
 import 'package:flutter/cupertino.dart';
@@ -31,8 +32,8 @@ class _FavoriteFoodListTabState extends State<FavoriteFoodListTab> {
     }
     return CustomScrollView(
       slivers: [
-        RestaurantHeader(),
-        SearchPersistentHeader(),
+        const RestaurantHeader(),
+        const SearchPersistentHeader(),
         SliverList.builder(
           itemBuilder: (context, i) => FoodListItem(
             title: filteredFoods[i].name,
@@ -44,8 +45,8 @@ class _FavoriteFoodListTabState extends State<FavoriteFoodListTab> {
           itemCount: filteredFoods.length,
         ),
         const SliverPadding(
-          padding: EdgeInsets.only(top: 64),
-        )
+          padding: EdgeInsets.only(top: 124),
+        ),
       ],
     );
   }
