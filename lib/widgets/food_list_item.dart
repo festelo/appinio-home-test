@@ -5,11 +5,14 @@ import 'package:flutter/cupertino.dart';
 
 class FoodListItem extends StatelessWidget {
   const FoodListItem({
-    required this.title,
-    required this.isFavorite,
-    required this.price,
     required this.image,
+    required this.title,
     required this.description,
+    required this.price,
+    required this.isFavorite,
+    required this.onFavoriteTap,
+    required this.onPriceTap,
+    required this.onTap,
     super.key,
   });
 
@@ -19,69 +22,75 @@ class FoodListItem extends StatelessWidget {
   final Decimal price;
   final bool isFavorite;
 
+  final VoidCallback onFavoriteTap;
+  final VoidCallback onPriceTap;
+  final VoidCallback onTap;
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      child: Row(
-        children: [
-          const SizedBox(width: 16),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16),
-            child: Image(
-              image: image,
-              height: 120,
-              width: 120,
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        child: Row(
+          children: [
+            const SizedBox(width: 16),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              child: Image(
+                image: image,
+                height: 120,
+                width: 120,
+              ),
             ),
-          ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    title,
+                    style: titleTextStyle,
                   ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  description,
-                  style: const TextStyle(
-                    fontSize: 14,
+                  const SizedBox(height: 8),
+                  Text(
+                    description,
+                    style: regularTextStyle,
                   ),
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: PriceButton(price: price),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: PriceButton(
+                            price: price,
+                            onTap: onPriceTap,
+                          ),
+                        ),
                       ),
-                    ),
-                    CupertinoButton(
-                      onPressed: () {},
-                      child: isFavorite
-                          ? Icon(
-                              CupertinoIcons.heart_fill,
-                              color: favoriteColor,
-                              size: 22,
-                            )
-                          : Icon(
-                              CupertinoIcons.heart,
-                              color: notFavoriteColor,
-                              size: 22,
-                            ),
-                    ),
-                  ],
-                ),
-              ],
+                      CupertinoButton(
+                        onPressed: onFavoriteTap,
+                        child: isFavorite
+                            ? Icon(
+                                CupertinoIcons.heart_fill,
+                                color: favoriteColor,
+                                size: 22,
+                              )
+                            : Icon(
+                                CupertinoIcons.heart,
+                                color: notFavoriteColor,
+                                size: 22,
+                              ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-          const SizedBox(width: 16),
-        ],
+            const SizedBox(width: 16),
+          ],
+        ),
       ),
     );
   }

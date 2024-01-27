@@ -1,3 +1,4 @@
+import 'package:appinio_bloc/pages/food_details_sheet/food_details_sheet.dart';
 import 'package:appinio_bloc/pages/food_list_page/favorite_food_list_tab/favorite_food_list_cubit.dart';
 import 'package:appinio_bloc/theme.dart';
 import 'package:appinio_bloc/widgets/food_list_item.dart';
@@ -41,6 +42,9 @@ class _FavoriteFoodListTabState extends State<FavoriteFoodListTab> {
             price: filteredFoods[i].price,
             image: NetworkImage(filteredFoods[i].imageUrl),
             description: filteredFoods[i].description,
+            onTap: () => showFoodDetailsSheet(context, filteredFoods[i]),
+            onPriceTap: () {},
+            onFavoriteTap: () {},
           ),
           itemCount: filteredFoods.length,
         ),

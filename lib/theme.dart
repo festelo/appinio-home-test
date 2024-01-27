@@ -10,3 +10,12 @@ Color get searchBarDividerColor => Colors.grey.shade200;
 Color get textFieldClearTextActionColor => Colors.black;
 Color get orderButtonMainColor => Colors.brown.shade600;
 Color get orderButtonTextColor => Colors.white;
+
+TextStyle get titleTextStyle => const TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w600,
+    );
+
+TextStyle get regularTextStyle => const TextStyle(
+      fontSize: 14,
+    );

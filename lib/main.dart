@@ -17,6 +17,11 @@ class MyApp extends StatelessWidget {
       theme: CupertinoThemeData(
         primaryColor: bottomBarActionColor,
       ),
+      localizationsDelegates: const [
+        DefaultMaterialLocalizations.delegate,
+        DefaultCupertinoLocalizations.delegate,
+        DefaultWidgetsLocalizations.delegate,
+      ],
       home: FoodListPage(),
     );
   }
