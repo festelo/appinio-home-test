@@ -8,6 +8,7 @@ Future<bool> showFoodDetailsSheet(BuildContext context, Food food) async {
   final res = await showModalBottomSheet<bool?>(
     context: context,
     isScrollControlled: true,
+    backgroundColor: CupertinoTheme.of(context).scaffoldBackgroundColor,
     builder: (_) => SizedBox(
       height: MediaQuery.of(context).size.height * 0.6,
       child: FoodDetailsSheet(food: food),

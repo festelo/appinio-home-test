@@ -2,6 +2,7 @@ import 'package:appinio_bloc/pages/basket_sheet/basket_address_page/basket_addre
 import 'package:appinio_bloc/pages/basket_sheet/basket_address_page/basket_address_page.dart';
 import 'package:appinio_bloc/pages/basket_sheet/basket_food_list_page/basket_food_list_cubit.dart';
 import 'package:appinio_bloc/pages/basket_sheet/basket_food_list_page/basket_food_list_page.dart';
+import 'package:appinio_bloc/pages/basket_sheet/basket_order_done_page/basket_order_done_page.dart';
 import 'package:appinio_bloc/pages/basket_sheet/routes.dart';
 import 'package:appinio_bloc/pages/basket_sheet/widgets/basket_sheet_decoration.dart';
 import 'package:appinio_bloc/widgets/sheet_handle.dart';
@@ -33,6 +34,10 @@ class BasketSheet extends StatelessWidget {
           Expanded(
             child: Navigator(
               onGenerateRoute: (route) => switch (route.name) {
+                BasketRoutes.done => CupertinoPageRoute(
+                    settings: route,
+                    builder: (context) => const BasketOrderDonePage(),
+                  ),
                 BasketRoutes.address => CupertinoPageRoute(
                     settings: route,
                     builder: (context) => BlocProvider(

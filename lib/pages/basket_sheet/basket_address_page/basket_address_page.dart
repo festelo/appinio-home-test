@@ -1,4 +1,5 @@
 import 'package:appinio_bloc/pages/basket_sheet/basket_address_page/basket_address_cubit.dart';
+import 'package:appinio_bloc/pages/basket_sheet/routes.dart';
 import 'package:appinio_bloc/pages/basket_sheet/widgets/basket_sheet_content_decoration.dart';
 import 'package:appinio_bloc/pages/basket_sheet/widgets/basket_sheet_summary.dart';
 import 'package:flutter/cupertino.dart';
@@ -6,6 +7,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BasketAddressPage extends StatelessWidget {
   const BasketAddressPage({super.key});
+
+  void onNext(BuildContext context) =>
+      Navigator.of(context).pushNamedAndRemoveUntil(
+        BasketRoutes.done,
+        (_) => false,
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +87,7 @@ class BasketAddressPage extends StatelessWidget {
           BasketSheetSummary(
             totalPrice: totalPrice,
             buttonText: 'Confirm',
-            onSubmit: () {},
+            onSubmit: () => onNext(context),
           ),
         ],
       ),
