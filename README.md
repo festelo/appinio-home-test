@@ -54,3 +54,4 @@ As per the requirements, Firestore is used to store food, and favorites are also
 * The search bar searches not only in food titles, but also in their description.
 * I decided not to implement pagination, as restaurants typically have only a few menu items, which can be easily loaded without it.
 * There is no error handling in case of poor or no internet connection.
+* There is no i18n, all strings are hardcoded
