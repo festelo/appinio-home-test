@@ -28,10 +28,10 @@ class FirestoreFoodDto {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'name': name,
-      'description': description,
-      'imageUrl': imageUrl,
-      'price': price,
+      FoodCollection.name: name,
+      FoodCollection.description: description,
+      FoodCollection.imageUrl: imageUrl,
+      FoodCollection.price: price,
     };
   }
 }
