@@ -40,7 +40,7 @@ As per the requirements, Firestore is used to store food, and favorites are also
   + `price` (EUR only, string)
 * `favorites` - a collection of users' favorite dishes
   + `foodId`
-  + `userId`
+  + `userId`- since there is no authorization, `userId` always remains the same.
 * `orders`
   + `street`
   + `floor`
