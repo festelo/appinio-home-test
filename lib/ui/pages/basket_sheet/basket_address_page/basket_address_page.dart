@@ -2,6 +2,7 @@ import 'package:appinio_bloc/ui/pages/basket_sheet/basket_address_page/basket_ad
 import 'package:appinio_bloc/ui/pages/basket_sheet/routes.dart';
 import 'package:appinio_bloc/ui/pages/basket_sheet/widgets/basket_sheet_content_decoration.dart';
 import 'package:appinio_bloc/ui/pages/basket_sheet/widgets/basket_sheet_summary.dart';
+import 'package:appinio_bloc/ui/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,10 +19,6 @@ class BasketAddressPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final totalPrice = context.select(
       (BasketAddressCubit cubit) => cubit.state.totalPrice,
-    );
-
-    final titleTextStyle = TextStyle(
-      fontWeight: FontWeight.w500,
     );
 
     return BasketSheetContentDecoration(
@@ -42,6 +39,7 @@ class BasketAddressPage extends StatelessWidget {
                   readOnly: true,
                   controller: TextEditingController(text: 'Berlin'),
                 ),
+                const SizedBox(height: 4),
                 const TextPadding(
                   child: Text(
                     'We currently only operate in Berlin',
@@ -50,7 +48,7 @@ class BasketAddressPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 22),
                 TextPadding(
                   child: Text(
                     'Street',
@@ -61,7 +59,7 @@ class BasketAddressPage extends StatelessWidget {
                 CupertinoTextField(
                   placeholder: 'Alexanderstr. 4',
                 ),
-                SizedBox(height: 16),
+                SizedBox(height: 22),
                 TextPadding(
                   child: Text(
                     'Floor',
@@ -72,7 +70,7 @@ class BasketAddressPage extends StatelessWidget {
                 CupertinoTextField(
                   placeholder: 'EG',
                 ),
-                SizedBox(height: 16),
+                SizedBox(height: 22),
                 Text(
                   'Comment',
                   style: titleTextStyle,

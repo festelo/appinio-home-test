@@ -15,39 +15,41 @@ class FoodListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        CupertinoPageScaffold(
-          child: Column(
-            children: [
-              Expanded(
-                child: FoodListView(
-                  isLoading: context.select(
-                    (FoodListCubit cubit) => cubit.state.isLoading,
+        SafeArea(
+          child: CupertinoPageScaffold(
+            child: Column(
+              children: [
+                Expanded(
+                  child: FoodListView(
+                    isLoading: context.select(
+                      (FoodListCubit cubit) => cubit.state.isLoading,
+                    ),
+                    filteredFood: context.select(
+                      (FoodListCubit cubit) => cubit.state.filteredFoodList,
+                    ),
+                    onSearchChanged:
+                        context.read<FoodListCubit>().changeSearchPhrase,
                   ),
-                  filteredFood: context.select(
-                    (FoodListCubit cubit) => cubit.state.filteredFoodList,
-                  ),
-                  onSearchChanged:
-                      context.read<FoodListCubit>().changeSearchPhrase,
                 ),
-              ),
-              CupertinoTabBar(
-                onTap: (i) =>
-                    context.read<FoodListCubit>().changeFilterBasedOnTab(i),
-                currentIndex: context.select(
-                  (FoodListCubit cubit) => cubit.state.currentTab,
+                CupertinoTabBar(
+                  onTap: (i) =>
+                      context.read<FoodListCubit>().changeFilterBasedOnTab(i),
+                  currentIndex: context.select(
+                    (FoodListCubit cubit) => cubit.state.currentTab,
+                  ),
+                  items: const [
+                    BottomNavigationBarItem(
+                      icon: Icon(CupertinoIcons.list_bullet),
+                      label: 'Overview',
+                    ),
+                    BottomNavigationBarItem(
+                      icon: Icon(CupertinoIcons.heart),
+                      label: 'Favorites',
+                    ),
+                  ],
                 ),
-                items: const [
-                  BottomNavigationBarItem(
-                    icon: Icon(CupertinoIcons.list_bullet),
-                    label: 'Overview',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(CupertinoIcons.heart),
-                    label: 'Favorites',
-                  ),
-                ],
-              ),
-            ],
+              ],
+            ),
           ),
         ),
         Positioned(

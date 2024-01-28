@@ -14,8 +14,12 @@ Future<bool> showBasketSheet(BuildContext context) async {
   final res = await showModalBottomSheet<bool?>(
     context: context,
     isScrollControlled: true,
+    useSafeArea: true,
     backgroundColor: CupertinoTheme.of(context).scaffoldBackgroundColor,
-    builder: (_) => const BasketSheet(),
+    builder: (_) => SizedBox(
+      height: MediaQuery.of(context).size.height - 50,
+      child: const BasketSheet(),
+    ),
   );
   return res ?? false;
 }
