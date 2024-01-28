@@ -52,7 +52,7 @@ class BasketFoodListPage extends StatelessWidget {
           BasketSheetSummary(
             totalPrice: totalPrice,
             buttonText: 'Next',
-            onSubmit: () => onNext(context),
+            onSubmit: foodList.isEmpty ? null : () => onNext(context),
           ),
         ],
       ),
