@@ -28,6 +28,7 @@ jobs:
       - uses: ncipollo/release-action@v1
         with:
           artifacts: "build/app/outputs/flutter-apk/app-release.apk"
+          name: "Release #${{ github.run_attempt }}"
 
   web:
     runs-on: ubuntu-latest
