@@ -1,9 +1,6 @@
-import 'package:appinio_bloc/extensions/price_extensions.dart';
 import 'package:appinio_bloc/pages/basket_sheet/basket_address_page/basket_address_cubit.dart';
-import 'package:appinio_bloc/pages/basket_sheet/widgets/basket_sheet_decoration.dart';
+import 'package:appinio_bloc/pages/basket_sheet/widgets/basket_sheet_content_decoration.dart';
 import 'package:appinio_bloc/pages/basket_sheet/widgets/basket_sheet_summary.dart';
-import 'package:appinio_bloc/theme.dart';
-import 'package:appinio_bloc/widgets/sheet_handle.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,10 +17,9 @@ class BasketAddressPage extends StatelessWidget {
       fontWeight: FontWeight.w500,
     );
 
-    return BasketSheetDecoration(
+    return BasketSheetContentDecoration(
       child: Column(
         children: [
-          const SheetHandle(),
           Expanded(
             child: ListView(
               padding: const EdgeInsets.symmetric(horizontal: 16),

@@ -1,10 +1,9 @@
 import 'package:appinio_bloc/pages/basket_sheet/basket_food_list_page/basket_food_list_cubit.dart';
 import 'package:appinio_bloc/pages/basket_sheet/routes.dart';
-import 'package:appinio_bloc/pages/basket_sheet/widgets/basket_sheet_decoration.dart';
+import 'package:appinio_bloc/pages/basket_sheet/widgets/basket_sheet_content_decoration.dart';
 import 'package:appinio_bloc/pages/basket_sheet/widgets/basket_sheet_summary.dart';
 import 'package:appinio_bloc/theme.dart';
 import 'package:appinio_bloc/widgets/food_list_item.dart';
-import 'package:appinio_bloc/widgets/sheet_handle.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -23,10 +22,9 @@ class BasketFoodListPage extends StatelessWidget {
       (BasketFoodListCubit cubit) => cubit.state.totalPrice,
     );
 
-    return BasketSheetDecoration(
+    return BasketSheetContentDecoration(
       child: Column(
         children: [
-          const SheetHandle(),
           Expanded(
             child: ListView.builder(
               itemCount: foodList.length,
