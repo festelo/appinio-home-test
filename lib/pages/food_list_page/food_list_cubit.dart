@@ -59,4 +59,13 @@ class FoodListCubit extends Cubit<FoodListViewModel> {
       state.copyWith(filter: filter),
     );
   }
+
+  void changeFilterBasedOnTab(int tab) {
+    changeFilter(
+      switch (tab) {
+        1 => FoodFilter.favorite,
+        _ => FoodFilter.all,
+      },
+    );
+  }
 }

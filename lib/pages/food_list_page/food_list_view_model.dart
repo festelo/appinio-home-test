@@ -28,6 +28,11 @@ class FoodListViewModel {
   UnmodifiableListView<Food> get filteredFoods =>
       UnmodifiableListView(foodList);
 
+  int get currentTab => switch (filter) {
+        FoodFilter.all => 0,
+        FoodFilter.favorite => 1,
+      };
+
   FoodListViewModel copyWith({
     List<Food>? foodList,
     bool? isLoading,

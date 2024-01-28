@@ -27,12 +27,11 @@ class FoodListPage extends StatelessWidget {
                 ),
               ),
               CupertinoTabBar(
-                onTap: (i) => context.read<FoodListCubit>().changeFilter(
-                      switch (i) {
-                        1 => FoodFilter.favorite,
-                        _ => FoodFilter.all,
-                      },
-                    ),
+                onTap: (i) =>
+                    context.read<FoodListCubit>().changeFilterBasedOnTab(i),
+                currentIndex: context.select(
+                  (FoodListCubit cubit) => cubit.state.currentTab,
+                ),
                 items: const [
                   BottomNavigationBarItem(
                     icon: Icon(CupertinoIcons.list_bullet),
