@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:appinio_bloc/domain/model/food.dart';
 import 'package:appinio_bloc/domain/model/food_in_basket.dart';
 import 'package:decimal/decimal.dart';

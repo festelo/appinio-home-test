@@ -28,7 +28,7 @@ class PriceButton extends StatelessWidget {
           padding: const EdgeInsets.symmetric(
             vertical: 4,
           ),
-          width: 60,
+          width: 74,
           alignment: Alignment.center,
           child: Text(
             price.formatAsPrice(),

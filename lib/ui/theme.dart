@@ -21,6 +21,10 @@ TextStyle get titleTextStyle => const TextStyle(
       fontWeight: FontWeight.w600,
     );
 
+TextStyle get titleThinTextStyle => const TextStyle(
+      fontSize: 16,
+    );
+
 TextStyle get regularTextStyle => const TextStyle(
       fontSize: 14,
     );

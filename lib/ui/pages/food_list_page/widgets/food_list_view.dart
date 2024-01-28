@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'package:appinio_bloc/domain/model/food.dart';
+import 'package:appinio_bloc/ui/pages/food_list_page/widgets/empty_placeholder.dart';
 import 'package:appinio_bloc/ui/widgets/favorite_button.dart';
 import 'package:appinio_bloc/ui/widgets/food_list_item.dart';
 import 'package:appinio_bloc/ui/widgets/loading_placeholder.dart';
@@ -45,21 +46,27 @@ class _FoodListViewState extends State<FoodListView> {
         SearchPersistentHeader(
           onChanged: widget.onSearchChanged,
         ),
-        SliverList.builder(
-          itemBuilder: (context, i) => FoodListItem(
-            title: filteredFood[i].name,
-            price: filteredFood[i].price,
-            image: NetworkImage(filteredFood[i].imageUrl),
-            description: filteredFood[i].description,
-            onTap: () => widget.onFoodTap(filteredFood[i]),
-            onPriceTap: () => widget.onAddToBasket(filteredFood[i]),
-            subaction: FavoriteButton(
-              onFavoriteTap: () => widget.onFavoriteTap(filteredFood[i]),
-              isFavorite: filteredFood[i].isFavorite,
+        if (filteredFood.isEmpty)
+          const SliverFillRemaining(
+            hasScrollBody: false,
+            child: EmptyPlaceholder(),
+          )
+        else
+          SliverList.builder(
+            itemBuilder: (context, i) => FoodListItem(
+              title: filteredFood[i].name,
+              price: filteredFood[i].price,
+              image: NetworkImage(filteredFood[i].imageUrl),
+              description: filteredFood[i].description,
+              onTap: () => widget.onFoodTap(filteredFood[i]),
+              onPriceTap: () => widget.onAddToBasket(filteredFood[i]),
+              subaction: FavoriteButton(
+                onFavoriteTap: () => widget.onFavoriteTap(filteredFood[i]),
+                isFavorite: filteredFood[i].isFavorite,
+              ),
             ),
+            itemCount: filteredFood.length,
           ),
-          itemCount: filteredFood.length,
-        ),
         const SliverPadding(
           padding: EdgeInsets.only(top: 124),
         ),
