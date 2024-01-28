@@ -2,7 +2,6 @@ import 'package:appinio_bloc/ui/extensions/price_extensions.dart';
 import 'package:appinio_bloc/ui/theme.dart';
 import 'package:decimal/decimal.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 class BasketSheetSummary extends StatelessWidget {
   const BasketSheetSummary({

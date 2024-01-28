@@ -1,7 +1,6 @@
 import 'dart:collection';
 
 import 'package:appinio_bloc/domain/model/food.dart';
-import 'package:appinio_bloc/ui/pages/food_details_sheet/food_details_sheet.dart';
 import 'package:appinio_bloc/ui/widgets/favorite_button.dart';
 import 'package:appinio_bloc/ui/widgets/food_list_item.dart';
 import 'package:appinio_bloc/ui/widgets/loading_placeholder.dart';

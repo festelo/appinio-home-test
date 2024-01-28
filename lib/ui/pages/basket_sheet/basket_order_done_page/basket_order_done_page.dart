@@ -15,7 +15,7 @@ class BasketOrderDonePage extends StatelessWidget {
         children: [
           const Expanded(
             child: Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(8),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -35,7 +35,7 @@ class BasketOrderDonePage extends StatelessWidget {
             ),
           ),
           CupertinoButton(
-            child: Text('Nothing to do while waiting?'),
+            child: const Text('Nothing to do while waiting?'),
             onPressed: () => launchUrl(
               Uri.parse('https://tetris.com/play-tetris'),
             ), // todo: refactor

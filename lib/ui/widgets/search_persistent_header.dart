@@ -40,7 +40,10 @@ class SearchPersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
     return Container(
       height: 150,
       color: searchBarColor,
@@ -61,7 +64,7 @@ class SearchPersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
             width: double.infinity,
             height: 1,
             color: dividerColor,
-          )
+          ),
         ],
       ),
     );
