@@ -55,6 +55,7 @@ class AppinioRestaurantApp extends StatelessWidget {
       title: 'Appinio Demo Showcase',
       theme: CupertinoThemeData(
         primaryColor: bottomBarActionColor,
+        brightness: Brightness.light,
       ),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,

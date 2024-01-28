@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:appinio_bloc/domain/model/food.dart';
 import 'package:appinio_bloc/ui/extensions/price_extensions.dart';
 import 'package:appinio_bloc/ui/theme.dart';
@@ -10,7 +12,7 @@ Future<bool> showFoodDetailsSheet(BuildContext context, Food food) async {
     isScrollControlled: true,
     backgroundColor: CupertinoTheme.of(context).scaffoldBackgroundColor,
     builder: (_) => SizedBox(
-      height: MediaQuery.of(context).size.height * 0.6,
+      height: min(MediaQuery.of(context).size.height - 50, 450),
       child: FoodDetailsSheet(food: food),
     ),
   );

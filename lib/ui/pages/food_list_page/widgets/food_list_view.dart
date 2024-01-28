@@ -68,7 +68,7 @@ class _FoodListViewState extends State<FoodListView> {
             itemCount: filteredFood.length,
           ),
         const SliverPadding(
-          padding: EdgeInsets.only(top: 124),
+          padding: EdgeInsets.only(top: 80),
         ),
       ],
     );
