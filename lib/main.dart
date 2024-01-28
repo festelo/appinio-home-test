@@ -1,6 +1,6 @@
-import 'package:appinio_bloc/pages/food_list_page/food_list_cubit.dart';
-import 'package:appinio_bloc/pages/food_list_page/food_list_page.dart';
-import 'package:appinio_bloc/theme.dart';
+import 'package:appinio_bloc/ui/pages/food_list_page/food_list_cubit.dart';
+import 'package:appinio_bloc/ui/pages/food_list_page/food_list_page.dart';
+import 'package:appinio_bloc/ui/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

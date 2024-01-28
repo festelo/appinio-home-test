@@ -1,4 +1,4 @@
-import 'package:appinio_bloc/pages/basket_sheet/widgets/basket_sheet_content_decoration.dart';
+import 'package:appinio_bloc/ui/pages/basket_sheet/widgets/basket_sheet_content_decoration.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:url_launcher/url_launcher.dart';
 

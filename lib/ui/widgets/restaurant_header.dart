@@ -1,4 +1,4 @@
-import 'package:appinio_bloc/theme.dart';
+import 'package:appinio_bloc/ui/theme.dart';
 import 'package:flutter/material.dart';
 
 class RestaurantHeader extends StatelessWidget {

@@ -1,7 +1,6 @@
 import 'package:appinio_bloc/domain/model/food.dart';
 import 'package:appinio_bloc/domain/model/food_in_basket.dart';
-import 'package:appinio_bloc/pages/basket_sheet/basket_food_list_page/basket_food_list_view_model.dart';
-import 'package:appinio_bloc/pages/food_list_page/food_list_view_model.dart';
+import 'package:appinio_bloc/ui/pages/basket_sheet/basket_address_page/basket_address_view_model.dart';
 import 'package:decimal/decimal.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -33,29 +32,13 @@ const pizzaList = [
   ]
 ];
 
-class BasketFoodListCubit extends Cubit<BasketFoodListViewModel> {
-  BasketFoodListCubit() : super(const BasketFoodListViewModel.init());
+class BasketAddressCubit extends Cubit<BasketAddressViewModel> {
+  BasketAddressCubit() : super(const BasketAddressViewModel.init());
 
   Future<void> load() async {
     var i = 0;
     emit(
-      state.copyWith(
-        foodInBasket: pizzaList
-            .map(
-              (p) => FoodInBasket(
-                food: Food(
-                  id: 'id',
-                  name: p[0],
-                  description: p[1],
-                  imageUrl: p[2],
-                  price: Decimal.parse('8.99'),
-                  isFavorite: i++ % 5 == 1,
-                ),
-                count: 1,
-              ),
-            )
-            .toList(),
-      ),
+      state.copyWith(),
     );
   }
 }

@@ -1,4 +1,4 @@
-import 'package:appinio_bloc/theme.dart';
+import 'package:appinio_bloc/ui/theme.dart';
 import 'package:flutter/cupertino.dart';
 
 class FoodCounter extends StatelessWidget {

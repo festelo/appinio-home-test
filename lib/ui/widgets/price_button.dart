@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:appinio_bloc/extensions/price_extensions.dart';
-import 'package:appinio_bloc/theme.dart';
+import 'package:appinio_bloc/ui/extensions/price_extensions.dart';
+import 'package:appinio_bloc/ui/theme.dart';
 import 'package:decimal/decimal.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

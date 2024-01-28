@@ -1,5 +1,5 @@
-import 'package:appinio_bloc/theme.dart';
-import 'package:appinio_bloc/widgets/price_button.dart';
+import 'package:appinio_bloc/ui/theme.dart';
+import 'package:appinio_bloc/ui/widgets/price_button.dart';
 import 'package:decimal/decimal.dart';
 import 'package:flutter/cupertino.dart';
 

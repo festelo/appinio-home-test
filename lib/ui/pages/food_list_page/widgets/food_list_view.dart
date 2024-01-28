@@ -1,12 +1,12 @@
 import 'dart:collection';
 
 import 'package:appinio_bloc/domain/model/food.dart';
-import 'package:appinio_bloc/pages/food_details_sheet/food_details_sheet.dart';
-import 'package:appinio_bloc/widgets/favorite_button.dart';
-import 'package:appinio_bloc/widgets/food_list_item.dart';
-import 'package:appinio_bloc/widgets/loading_placeholder.dart';
-import 'package:appinio_bloc/widgets/restaurant_header.dart';
-import 'package:appinio_bloc/widgets/search_persistent_header.dart';
+import 'package:appinio_bloc/ui/pages/food_details_sheet/food_details_sheet.dart';
+import 'package:appinio_bloc/ui/widgets/favorite_button.dart';
+import 'package:appinio_bloc/ui/widgets/food_list_item.dart';
+import 'package:appinio_bloc/ui/widgets/loading_placeholder.dart';
+import 'package:appinio_bloc/ui/widgets/restaurant_header.dart';
+import 'package:appinio_bloc/ui/widgets/search_persistent_header.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

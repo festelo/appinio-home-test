@@ -1,7 +1,7 @@
-import 'package:appinio_bloc/pages/basket_sheet/basket_sheet.dart';
-import 'package:appinio_bloc/pages/food_list_page/food_list_cubit.dart';
-import 'package:appinio_bloc/pages/food_list_page/widgets/food_list_view.dart';
-import 'package:appinio_bloc/widgets/order_button.dart';
+import 'package:appinio_bloc/ui/pages/basket_sheet/basket_sheet.dart';
+import 'package:appinio_bloc/ui/pages/food_list_page/food_list_cubit.dart';
+import 'package:appinio_bloc/ui/pages/food_list_page/widgets/food_list_view.dart';
+import 'package:appinio_bloc/ui/widgets/order_button.dart';
 import 'package:decimal/decimal.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

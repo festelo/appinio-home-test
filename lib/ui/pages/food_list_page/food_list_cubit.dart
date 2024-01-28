@@ -1,5 +1,5 @@
 import 'package:appinio_bloc/domain/model/food.dart';
-import 'package:appinio_bloc/pages/food_list_page/food_list_view_model.dart';
+import 'package:appinio_bloc/ui/pages/food_list_page/food_list_view_model.dart';
 import 'package:decimal/decimal.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

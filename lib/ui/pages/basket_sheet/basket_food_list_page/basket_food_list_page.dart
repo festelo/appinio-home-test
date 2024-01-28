@@ -1,9 +1,9 @@
-import 'package:appinio_bloc/pages/basket_sheet/basket_food_list_page/basket_food_list_cubit.dart';
-import 'package:appinio_bloc/pages/basket_sheet/routes.dart';
-import 'package:appinio_bloc/pages/basket_sheet/widgets/basket_sheet_content_decoration.dart';
-import 'package:appinio_bloc/pages/basket_sheet/widgets/basket_sheet_summary.dart';
-import 'package:appinio_bloc/theme.dart';
-import 'package:appinio_bloc/widgets/food_list_item.dart';
+import 'package:appinio_bloc/ui/pages/basket_sheet/basket_food_list_page/basket_food_list_cubit.dart';
+import 'package:appinio_bloc/ui/pages/basket_sheet/routes.dart';
+import 'package:appinio_bloc/ui/pages/basket_sheet/widgets/basket_sheet_content_decoration.dart';
+import 'package:appinio_bloc/ui/pages/basket_sheet/widgets/basket_sheet_summary.dart';
+import 'package:appinio_bloc/ui/theme.dart';
+import 'package:appinio_bloc/ui/widgets/food_list_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
