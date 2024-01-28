@@ -47,6 +47,7 @@ As per the requirements, Firestore is used to store food, and favorites are also
   + `street`
   + `floor`
   + `comment`
+  + `userId`
   + `food`
     + `foodId`
     + `count`

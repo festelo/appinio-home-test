@@ -6,6 +6,7 @@ class FirestoreOrderDto {
     required this.street,
     required this.floor,
     required this.comment,
+    required this.userId,
     required this.food,
   });
 
@@ -14,6 +15,7 @@ class FirestoreOrderDto {
       street: map[OrderCollection.street] as String,
       floor: map[OrderCollection.floor] as String,
       comment: map[OrderCollection.comment] as String,
+      userId: map[OrderCollection.userId] as String,
       food: List<FirestoreFoodInOrderDto>.from(
         (map[OrderCollection.food] as List<int>).map<FirestoreFoodInOrderDto>(
           (x) => FirestoreFoodInOrderDto.fromMap(x as Map<String, dynamic>),
@@ -24,6 +26,7 @@ class FirestoreOrderDto {
   final String street;
   final String floor;
   final String comment;
+  final String userId;
   final List<FirestoreFoodInOrderDto> food;
 
   Map<String, dynamic> toMap() {
@@ -31,6 +34,7 @@ class FirestoreOrderDto {
       OrderCollection.street: street,
       OrderCollection.floor: floor,
       OrderCollection.comment: comment,
+      OrderCollection.userId: userId,
       OrderCollection.food: food.map((x) => x.toMap()).toList(),
     };
   }

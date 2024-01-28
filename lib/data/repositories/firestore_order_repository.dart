@@ -1,3 +1,4 @@
+import 'package:appinio_bloc/data/constants.dart';
 import 'package:appinio_bloc/data/dto/firestore_food_in_order_dto.dart';
 import 'package:appinio_bloc/data/dto/firestore_order_dto.dart';
 import 'package:appinio_bloc/data/firestore_collections/firestore_order_collection.dart';
@@ -22,6 +23,7 @@ class FirestoreOrderRepository implements OrderRepository {
             street: street,
             floor: floor,
             comment: comment,
+            userId: userId,
             food: foodInBasket
                 .map(
                   (f) => FirestoreFoodInOrderDto(
