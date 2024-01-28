@@ -1,6 +1,7 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:decimal/decimal.dart';
 import 'package:equatable/equatable.dart';
+
+typedef FoodId = String;
 
 class Food extends Equatable {
   const Food({
@@ -12,7 +13,7 @@ class Food extends Equatable {
     required this.isFavorite,
   });
 
-  final String id;
+  final FoodId id;
   final String name;
   final String description;
   final String imageUrl;
@@ -29,5 +30,23 @@ class Food extends Equatable {
       price,
       isFavorite,
     ];
+  }
+
+  Food copyWith({
+    FoodId? id,
+    String? name,
+    String? description,
+    String? imageUrl,
+    Decimal? price,
+    bool? isFavorite,
+  }) {
+    return Food(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      description: description ?? this.description,
+      imageUrl: imageUrl ?? this.imageUrl,
+      price: price ?? this.price,
+      isFavorite: isFavorite ?? this.isFavorite,
+    );
   }
 }

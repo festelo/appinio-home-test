@@ -13,12 +13,14 @@ import 'package:flutter/material.dart';
 class FoodListView extends StatefulWidget {
   const FoodListView({
     required this.isLoading,
-    required this.filteredFoods,
+    required this.filteredFood,
+    required this.onSearchChanged,
     super.key,
   });
 
   final bool isLoading;
-  final UnmodifiableListView<Food> filteredFoods;
+  final UnmodifiableListView<Food> filteredFood;
+  final ValueChanged<String> onSearchChanged;
 
   @override
   State<FoodListView> createState() => _FoodListViewState();
@@ -28,28 +30,30 @@ class _FoodListViewState extends State<FoodListView> {
   @override
   Widget build(BuildContext context) {
     final isLoading = widget.isLoading;
-    final filteredFoods = widget.filteredFoods;
-    if (filteredFoods.isEmpty && isLoading) {
+    final filteredFood = widget.filteredFood;
+    if (filteredFood.isEmpty && isLoading) {
       return const LoadingPlaceholder();
     }
     return CustomScrollView(
       slivers: [
         const RestaurantHeader(),
-        const SearchPersistentHeader(),
+        SearchPersistentHeader(
+          onChanged: widget.onSearchChanged,
+        ),
         SliverList.builder(
           itemBuilder: (context, i) => FoodListItem(
-            title: filteredFoods[i].name,
-            price: filteredFoods[i].price,
-            image: NetworkImage(filteredFoods[i].imageUrl),
-            description: filteredFoods[i].description,
-            onTap: () => showFoodDetailsSheet(context, filteredFoods[i]),
+            title: filteredFood[i].name,
+            price: filteredFood[i].price,
+            image: NetworkImage(filteredFood[i].imageUrl),
+            description: filteredFood[i].description,
+            onTap: () => showFoodDetailsSheet(context, filteredFood[i]),
             onPriceTap: () {},
             subaction: FavoriteButton(
               onFavoriteTap: () {},
-              isFavorite: filteredFoods[i].isFavorite,
+              isFavorite: filteredFood[i].isFavorite,
             ),
           ),
-          itemCount: filteredFoods.length,
+          itemCount: filteredFood.length,
         ),
         const SliverPadding(
           padding: EdgeInsets.only(top: 124),

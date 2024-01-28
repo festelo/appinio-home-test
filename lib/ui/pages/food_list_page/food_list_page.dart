@@ -23,9 +23,11 @@ class FoodListPage extends StatelessWidget {
                   isLoading: context.select(
                     (FoodListCubit cubit) => cubit.state.isLoading,
                   ),
-                  filteredFoods: context.select(
-                    (FoodListCubit cubit) => cubit.state.filteredFoods,
+                  filteredFood: context.select(
+                    (FoodListCubit cubit) => cubit.state.filteredFoodList,
                   ),
+                  onSearchChanged:
+                      context.read<FoodListCubit>().changeSearchPhrase,
                 ),
               ),
               CupertinoTabBar(

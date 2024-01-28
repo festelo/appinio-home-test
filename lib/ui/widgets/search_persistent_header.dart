@@ -2,18 +2,31 @@ import 'package:appinio_bloc/ui/theme.dart';
 import 'package:flutter/cupertino.dart';
 
 class SearchPersistentHeader extends StatelessWidget {
-  const SearchPersistentHeader({super.key});
+  const SearchPersistentHeader({
+    required this.onChanged,
+    super.key,
+  });
+
+  final ValueChanged<String> onChanged;
 
   @override
   Widget build(BuildContext context) {
     return SliverPersistentHeader(
       pinned: true,
-      delegate: SearchPersistentHeaderDelegate(),
+      delegate: SearchPersistentHeaderDelegate(
+        onChanged: onChanged,
+      ),
     );
   }
 }
 
 class SearchPersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
+  SearchPersistentHeaderDelegate({
+    required this.onChanged,
+  });
+
+  final ValueChanged<String> onChanged;
+
   @override
   double get maxExtent => 85;
 
@@ -37,8 +50,9 @@ class SearchPersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               alignment: Alignment.center,
-              child: const ClearableCupertinoTextField(
+              child: ClearableCupertinoTextField(
                 placeholder: 'Find something specific',
+                onChanged: onChanged,
               ),
             ),
           ),
@@ -56,11 +70,13 @@ class SearchPersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
 
 class ClearableCupertinoTextField extends StatefulWidget {
   const ClearableCupertinoTextField({
+    required this.onChanged,
     super.key,
     this.placeholder,
   });
 
   final String? placeholder;
+  final ValueChanged<String> onChanged;
 
   @override
   State<ClearableCupertinoTextField> createState() =>
@@ -84,6 +100,7 @@ class _ClearableCupertinoTextFieldState
   @override
   Widget build(BuildContext context) {
     return CupertinoTextField(
+      onChanged: widget.onChanged,
       controller: _controller,
       placeholder: widget.placeholder,
       suffix: ListenableBuilder(
