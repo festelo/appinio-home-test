@@ -1,33 +1,33 @@
+import 'dart:collection';
+
+import 'package:appinio_bloc/domain/model/food.dart';
 import 'package:appinio_bloc/pages/food_details_sheet/food_details_sheet.dart';
-import 'package:appinio_bloc/pages/food_list_page/favorite_food_list_tab/favorite_food_list_cubit.dart';
-import 'package:appinio_bloc/theme.dart';
 import 'package:appinio_bloc/widgets/food_list_item.dart';
 import 'package:appinio_bloc/widgets/loading_placeholder.dart';
-import 'package:appinio_bloc/widgets/order_button.dart';
 import 'package:appinio_bloc/widgets/restaurant_header.dart';
 import 'package:appinio_bloc/widgets/search_persistent_header.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-class FavoriteFoodListTab extends StatefulWidget {
-  const FavoriteFoodListTab({
+class FoodListView extends StatefulWidget {
+  const FoodListView({
+    required this.isLoading,
+    required this.filteredFoods,
     super.key,
   });
 
+  final bool isLoading;
+  final UnmodifiableListView<Food> filteredFoods;
+
   @override
-  State<FavoriteFoodListTab> createState() => _FavoriteFoodListTabState();
+  State<FoodListView> createState() => _FoodListViewState();
 }
 
-class _FavoriteFoodListTabState extends State<FavoriteFoodListTab> {
+class _FoodListViewState extends State<FoodListView> {
   @override
   Widget build(BuildContext context) {
-    final isLoading = context.select(
-      (FavoriteFoodListCubit cubit) => cubit.state.isLoading,
-    );
-    final filteredFoods = context.select(
-      (FavoriteFoodListCubit cubit) => cubit.state.filteredFoods,
-    );
+    final isLoading = widget.isLoading;
+    final filteredFoods = widget.filteredFoods;
     if (filteredFoods.isEmpty && isLoading) {
       return const LoadingPlaceholder();
     }

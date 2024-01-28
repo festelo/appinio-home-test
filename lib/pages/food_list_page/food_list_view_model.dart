@@ -3,45 +3,47 @@ import 'dart:collection';
 
 import 'package:appinio_bloc/domain/model/food.dart';
 
-abstract class FavoriteFoodListViewModel {
-  UnmodifiableListView<Food> get filteredFoods;
-  bool get isLoading;
-  bool get isError;
-}
-
-class FavoriteFoodListViewModelImpl implements FavoriteFoodListViewModel {
-  FavoriteFoodListViewModelImpl({
+class FoodListViewModel {
+  FoodListViewModel({
     required this.foodList,
     required this.isLoading,
     required this.isError,
+    required this.filter,
   });
 
-  FavoriteFoodListViewModelImpl.init()
+  FoodListViewModel.init()
       : foodList = [],
         isLoading = true,
-        isError = false;
+        isError = false,
+        filter = FoodFilter.all;
 
   final List<Food> foodList;
 
-  @override
   final bool isLoading;
 
-  @override
   final bool isError;
 
-  @override
+  final FoodFilter filter;
+
   UnmodifiableListView<Food> get filteredFoods =>
       UnmodifiableListView(foodList);
 
-  FavoriteFoodListViewModelImpl copyWith({
+  FoodListViewModel copyWith({
     List<Food>? foodList,
     bool? isLoading,
     bool? isError,
+    FoodFilter? filter,
   }) {
-    return FavoriteFoodListViewModelImpl(
+    return FoodListViewModel(
       foodList: foodList ?? this.foodList,
       isLoading: isLoading ?? this.isLoading,
       isError: isError ?? this.isError,
+      filter: filter ?? this.filter,
     );
   }
+}
+
+enum FoodFilter {
+  all,
+  favorite,
 }

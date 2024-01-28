@@ -1,5 +1,6 @@
-import 'package:appinio_bloc/pages/food_list_page/favorite_food_list_tab/favorite_food_list_cubit.dart';
-import 'package:appinio_bloc/pages/food_list_page/favorite_food_list_tab/favorite_food_list_tab.dart';
+import 'package:appinio_bloc/pages/food_list_page/food_list_cubit.dart';
+import 'package:appinio_bloc/pages/food_list_page/food_list_view_model.dart';
+import 'package:appinio_bloc/pages/food_list_page/widgets/food_list_view.dart';
 import 'package:appinio_bloc/widgets/order_button.dart';
 import 'package:decimal/decimal.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,23 +13,36 @@ class FoodListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        CupertinoTabScaffold(
-          tabBuilder: (context, i) => switch (i) {
-            0 => BlocProvider(
-                create: (ctx) => FavoriteFoodListCubit()..load(),
-                child: FavoriteFoodListTab(),
+        CupertinoPageScaffold(
+          child: Column(
+            children: [
+              Expanded(
+                child: FoodListView(
+                  isLoading: context.select(
+                    (FoodListCubit cubit) => cubit.state.isLoading,
+                  ),
+                  filteredFoods: context.select(
+                    (FoodListCubit cubit) => cubit.state.filteredFoods,
+                  ),
+                ),
               ),
-            _ => Container()
-          },
-          tabBar: CupertinoTabBar(
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(CupertinoIcons.list_bullet),
-                label: 'Overview',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(CupertinoIcons.heart),
-                label: 'Favorites',
+              CupertinoTabBar(
+                onTap: (i) => context.read<FoodListCubit>().changeFilter(
+                      switch (i) {
+                        1 => FoodFilter.favorite,
+                        _ => FoodFilter.all,
+                      },
+                    ),
+                items: const [
+                  BottomNavigationBarItem(
+                    icon: Icon(CupertinoIcons.list_bullet),
+                    label: 'Overview',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(CupertinoIcons.heart),
+                    label: 'Favorites',
+                  ),
+                ],
               ),
             ],
           ),

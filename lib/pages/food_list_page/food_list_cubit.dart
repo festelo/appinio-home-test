@@ -1,5 +1,5 @@
 import 'package:appinio_bloc/domain/model/food.dart';
-import 'package:appinio_bloc/pages/food_list_page/favorite_food_list_tab/favorite_food_list_view_model.dart';
+import 'package:appinio_bloc/pages/food_list_page/food_list_view_model.dart';
 import 'package:decimal/decimal.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -31,8 +31,8 @@ const pizzaList = [
   ]
 ];
 
-class FavoriteFoodListCubit extends Cubit<FavoriteFoodListViewModelImpl> {
-  FavoriteFoodListCubit() : super(FavoriteFoodListViewModelImpl.init());
+class FoodListCubit extends Cubit<FoodListViewModel> {
+  FoodListCubit() : super(FoodListViewModel.init());
 
   Future<void> load() async {
     var i = 0;
@@ -51,6 +51,12 @@ class FavoriteFoodListCubit extends Cubit<FavoriteFoodListViewModelImpl> {
             )
             .toList(),
       ),
+    );
+  }
+
+  void changeFilter(FoodFilter filter) {
+    emit(
+      state.copyWith(filter: filter),
     );
   }
 }
