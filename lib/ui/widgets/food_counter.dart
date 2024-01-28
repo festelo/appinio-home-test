@@ -25,7 +25,8 @@ class FoodCounter extends StatelessWidget {
         children: [
           CupertinoButton(
             padding: const EdgeInsets.symmetric(
-              horizontal: 12,
+              horizontal: 16,
+              vertical: 8,
             ),
             minSize: 28,
             onPressed: onMinusTap,
@@ -47,7 +48,8 @@ class FoodCounter extends StatelessWidget {
           ),
           CupertinoButton(
             padding: const EdgeInsets.symmetric(
-              horizontal: 12,
+              horizontal: 16,
+              vertical: 8,
             ),
             minSize: 28,
             onPressed: onPlusTap,
