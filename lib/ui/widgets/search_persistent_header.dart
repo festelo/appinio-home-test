@@ -95,6 +95,7 @@ class _ClearableCupertinoTextFieldState
 
   void _onClearPressed() {
     _controller.clear();
+    widget.onChanged('');
   }
 
   @override

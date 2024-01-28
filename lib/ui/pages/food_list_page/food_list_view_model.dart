@@ -1,8 +1,10 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:collection';
 
 import 'package:appinio_bloc/domain/model/food.dart';
+import 'package:equatable/equatable.dart';
 
-class FoodListViewModel {
+class FoodListViewModel extends Equatable {
   const FoodListViewModel({
     required this.foodList,
     required this.isLoading,
@@ -66,6 +68,18 @@ class FoodListViewModel {
             .toList(),
       ),
     );
+  }
+
+  @override
+  List<Object> get props {
+    return [
+      foodList,
+      isLoading,
+      isError,
+      filter,
+      searchPhrase,
+      filteredFoodList,
+    ];
   }
 }
 

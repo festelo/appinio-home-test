@@ -29,6 +29,8 @@ class FoodListPage extends StatelessWidget {
                     ),
                     onSearchChanged:
                         context.read<FoodListCubit>().changeSearchPhrase,
+                    onFavoriteTap:
+                        context.read<FoodListCubit>().onFavoriteSwitched,
                   ),
                 ),
                 CupertinoTabBar(

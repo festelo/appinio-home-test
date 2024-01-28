@@ -50,14 +50,15 @@ class FoodListCubit extends Cubit<FoodListViewModel> {
       // todo: Display an error
       rethrow;
     } finally {
-      state.copyWith(isLoading: false);
+      emit(state.copyWith(isLoading: false));
     }
   }
 
   Future<void> like(Food food) async {
     try {
       await _foodRepository.like(food);
-      state.copyWithFoodFavorite(food, isFavorite: true);
+      emit(state.copyWithFoodFavorite(food, isFavorite: true));
+      applySearchAndFilter();
     } catch (e) {
       // todo: Display an error
       rethrow;
@@ -67,10 +68,19 @@ class FoodListCubit extends Cubit<FoodListViewModel> {
   Future<void> dislike(Food food) async {
     try {
       await _foodRepository.dislike(food);
-      state.copyWithFoodFavorite(food, isFavorite: false);
+      emit(state.copyWithFoodFavorite(food, isFavorite: false));
+      applySearchAndFilter();
     } catch (e) {
       // todo: Display an error
       rethrow;
+    }
+  }
+
+  Future<void> onFavoriteSwitched(Food food) async {
+    if (food.isFavorite) {
+      await dislike(food);
+    } else {
+      await like(food);
     }
   }
 
@@ -78,6 +88,7 @@ class FoodListCubit extends Cubit<FoodListViewModel> {
     emit(
       state.copyWith(filter: filter),
     );
+    applySearchAndFilter();
   }
 
   void changeFilterBasedOnTab(int tab) {
@@ -93,6 +104,7 @@ class FoodListCubit extends Cubit<FoodListViewModel> {
     emit(
       state.copyWith(searchPhrase: searchPhrase),
     );
+    applySearchAndFilter();
   }
 
   void applySearchAndFilter() {
@@ -122,6 +134,7 @@ class FoodListCubit extends Cubit<FoodListViewModel> {
       final foundByName = food.name.toLowerCase().contains(searchPhrase);
       if (foundByName) {
         foundByNameFood.add(food);
+        continue;
       }
 
       final foundByDescription =

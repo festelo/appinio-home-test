@@ -15,12 +15,14 @@ class FoodListView extends StatefulWidget {
     required this.isLoading,
     required this.filteredFood,
     required this.onSearchChanged,
+    required this.onFavoriteTap,
     super.key,
   });
 
   final bool isLoading;
   final UnmodifiableListView<Food> filteredFood;
   final ValueChanged<String> onSearchChanged;
+  final void Function(Food) onFavoriteTap;
 
   @override
   State<FoodListView> createState() => _FoodListViewState();
@@ -49,7 +51,7 @@ class _FoodListViewState extends State<FoodListView> {
             onTap: () => showFoodDetailsSheet(context, filteredFood[i]),
             onPriceTap: () {},
             subaction: FavoriteButton(
-              onFavoriteTap: () {},
+              onFavoriteTap: () => widget.onFavoriteTap(filteredFood[i]),
               isFavorite: filteredFood[i].isFavorite,
             ),
           ),
