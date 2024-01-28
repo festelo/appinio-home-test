@@ -21,12 +21,13 @@
   + `dto` - internal models with which repositories operate inside the 'data' level
   + `firestore_collections` - definitions of firestore collections (collection names and list of their fields)
   + `mappers` - mappers from DTOs to 'domain' entities
+* localization - contains .arb files for localization
 
 ## Tests
 
 Currently, there is only one test, which serves as an example. However, it's possible to write tests for any part of the app (including golden image tests).  
 The test is written for basket_address_cubit and covers two cases: cubit loading and street changing.  
-[Link to the test](test\ui\pages\basket_sheet\basket_address_page\basket_address_cubit_test.dart)  
+[Link to the test](test/ui/pages/basket_sheet/basket_address_page/basket_address_cubit_test.dart)  
 
 ## Databases
 
