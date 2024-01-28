@@ -3,6 +3,7 @@ import 'package:appinio_bloc/ui/pages/basket_sheet/routes.dart';
 import 'package:appinio_bloc/ui/pages/basket_sheet/widgets/basket_sheet_content_decoration.dart';
 import 'package:appinio_bloc/ui/pages/basket_sheet/widgets/basket_sheet_summary.dart';
 import 'package:appinio_bloc/ui/theme.dart';
+import 'package:appinio_bloc/ui/widgets/food_counter.dart';
 import 'package:appinio_bloc/ui/widgets/food_list_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,53 +30,15 @@ class BasketFoodListPage extends StatelessWidget {
             child: ListView.builder(
               itemCount: foodList.length,
               itemBuilder: (context, i) => FoodListItem(
-                image: NetworkImage(foodList[i].food.imageUrl),
-                title: foodList[i].food.name,
-                description: foodList[i].food.description,
-                price: foodList[i].food.price,
-                onTap: () {},
-                subaction: Container(
-                  decoration: BoxDecoration(
-                    color: foodCounterBackgroundColor,
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  margin: const EdgeInsets.symmetric(vertical: 4),
-                  child: Row(
-                    children: [
-                      CupertinoButton(
-                        padding: EdgeInsets.zero,
-                        minSize: 28,
-                        child: Icon(
-                          CupertinoIcons.minus,
-                          size: 14,
-                          color: foodCounterCountColor,
-                        ),
-                        onPressed: () {},
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 2),
-                        child: Text(
-                          foodList[i].count.toString(),
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: foodCounterCountColor,
-                          ),
-                        ),
-                      ),
-                      CupertinoButton(
-                        padding: EdgeInsets.zero,
-                        minSize: 28,
-                        child: Icon(
-                          CupertinoIcons.plus,
-                          size: 14,
-                          color: foodCounterCountColor,
-                        ),
-                        onPressed: () {},
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+                  image: NetworkImage(foodList[i].food.imageUrl),
+                  title: foodList[i].food.name,
+                  description: foodList[i].food.description,
+                  price: foodList[i].food.price,
+                  onTap: () {},
+                  subaction: FoodCounter(
+                    count: 1,
+                    onChange: (_) {},
+                  )),
             ),
           ),
           BasketSheetSummary(
