@@ -23,12 +23,13 @@ jobs:
           channel: stable
 
       - run: flutter pub get
-      - run: flutter build apk --build-number ${{ github.run_attempt }}
+      - run: flutter build apk --build-number ${{ github.run_number }}
 
       - uses: ncipollo/release-action@v1
         with:
           artifacts: "build/app/outputs/flutter-apk/app-release.apk"
-          name: "Release #${{ github.run_attempt }}"
+          tag: ${{ github.run_number }}
+          name: "Release #${{ github.run_number }}"
 
   web:
     runs-on: ubuntu-latest
