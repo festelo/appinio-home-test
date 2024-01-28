@@ -31,6 +31,14 @@ Currently, there is only one test, which serves as an example. However, it's pos
 The test is written for basket_address_cubit and covers two cases: cubit loading and street changing.  
 [Link to the test](test/ui/pages/basket_sheet/basket_address_page/basket_address_cubit_test.dart)  
 
+
+## CI/CD
+
+The project uses Github Actions for CI/CD, with two jobs executed upon pushes to the 'main' branch:
+
+* The `android` job builds the android apk and publishes it in the `releases` section.
+* The `web` job builds web application and deploys it to the `gh-pages` branch, which is used for github pages.
+
 ## Databases
 
 As per the requirements, Firestore is used to store food, and favorites are also stored there. The food in the basket is stored in-memory.  
@@ -52,12 +60,29 @@ As per the requirements, Firestore is used to store food, and favorites are also
     + `foodId`
     + `count`
 
-## CI/CD
+## Firestore rules
 
-The project uses Github Actions for CI/CD, with two jobs executed upon pushes to the 'main' branch:
+There are Firestore security rules to enhance the app's security. Ideally, these rules would compare `userId` from db entities with the current user's id. However, since the app lacks authentication, they instead compare against a constant value. In this implementation it doesn't provide real security benefits (except for the few cases), but can be an example of how it could be implemented
 
-* The `android` job builds the android apk and publishes it in the `releases` section.
-* The `web` job builds web application and deploys it to the `gh-pages` branch, which is used for github pages.
+```
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /food/{document=**} {
+      allow read;
+    }
+    match /orders/{document=**} {
+      allow create: if request.resource.data.userId == 'the-only-one';
+    }
+    match /favorites/{document=**} {
+      allow read: if resource.data.userId == 'the-only-one';
+      allow create: if request.resource.data.userId == 'the-only-one';
+      allow delete: if resource.data.userId == 'the-only-one';
+    }
+  }
+}
+```
 
 ## Notes
 
