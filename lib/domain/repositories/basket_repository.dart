@@ -5,4 +5,5 @@ abstract class BasketRepository {
   Future<List<FoodInBasket>> list();
   Future<void> add(Food food);
   Future<void> remove(Food food);
+  Future<void> clear();
 }

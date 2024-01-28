@@ -6,14 +6,34 @@ import 'package:appinio_bloc/ui/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class BasketAddressPage extends StatelessWidget {
+class BasketAddressPage extends StatefulWidget {
   const BasketAddressPage({super.key});
 
-  void onNext(BuildContext context) =>
-      Navigator.of(context).pushNamedAndRemoveUntil(
-        BasketRoutes.done,
-        (_) => false,
-      );
+  @override
+  State<BasketAddressPage> createState() => _BasketAddressPageState();
+}
+
+class _BasketAddressPageState extends State<BasketAddressPage> {
+  final TextEditingController cityController =
+      TextEditingController(text: 'Berlin');
+
+  Future<void> onNext(BuildContext context) async {
+    final navigator = Navigator.of(context);
+    await context.read<BasketAddressCubit>().onConfirmOrder();
+    if (!navigator.mounted) {
+      return;
+    }
+    await navigator.pushNamedAndRemoveUntil(
+      BasketRoutes.done,
+      (_) => false,
+    );
+  }
+
+  @override
+  void dispose() {
+    cityController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +57,7 @@ class BasketAddressPage extends StatelessWidget {
                 const SizedBox(height: 6),
                 CupertinoTextField(
                   readOnly: true,
-                  controller: TextEditingController(text: 'Berlin'),
+                  controller: cityController,
                 ),
                 const SizedBox(height: 4),
                 const TextPadding(
@@ -55,29 +75,33 @@ class BasketAddressPage extends StatelessWidget {
                     style: titleTextStyle,
                   ),
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 CupertinoTextField(
                   placeholder: 'Alexanderstr. 4',
+                  onChanged: context.read<BasketAddressCubit>().onStreetChanged,
                 ),
-                SizedBox(height: 22),
+                const SizedBox(height: 22),
                 TextPadding(
                   child: Text(
                     'Floor',
                     style: titleTextStyle,
                   ),
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 CupertinoTextField(
                   placeholder: 'EG',
+                  onChanged: context.read<BasketAddressCubit>().onFloorChanged,
                 ),
-                SizedBox(height: 22),
+                const SizedBox(height: 22),
                 Text(
                   'Comment',
                   style: titleTextStyle,
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 CupertinoTextField(
                   placeholder: 'Enter from the backyard',
+                  onChanged:
+                      context.read<BasketAddressCubit>().onCommentChanged,
                 ),
               ],
             ),
@@ -85,7 +109,11 @@ class BasketAddressPage extends StatelessWidget {
           BasketSheetSummary(
             totalPrice: totalPrice,
             buttonText: 'Confirm',
-            onSubmit: () => onNext(context),
+            onSubmit: context.select(
+              (BasketAddressCubit cubit) => cubit.state.formValid,
+            )
+                ? () => onNext(context)
+                : null,
           ),
         ],
       ),

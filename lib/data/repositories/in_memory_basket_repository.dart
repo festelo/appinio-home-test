@@ -35,4 +35,9 @@ class InMemoryBasketRepository implements BasketRepository {
   Future<List<FoodInBasket>> list() async {
     return _storage.values.toList();
   }
+
+  @override
+  Future<void> clear() async {
+    _storage.clear();
+  }
 }

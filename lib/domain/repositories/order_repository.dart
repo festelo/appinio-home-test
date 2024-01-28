@@ -3,5 +3,10 @@
 import 'package:appinio_bloc/domain/model/food_in_basket.dart';
 
 abstract class OrderRepository {
-  Future<void> order(List<FoodInBasket> foodInBasket);
+  Future<void> order({
+    required List<FoodInBasket> foodInBasket,
+    required String street,
+    required String floor,
+    required String comment,
+  });
 }

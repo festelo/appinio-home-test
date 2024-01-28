@@ -2,6 +2,7 @@ import 'package:appinio_bloc/ui/extensions/price_extensions.dart';
 import 'package:appinio_bloc/ui/theme.dart';
 import 'package:decimal/decimal.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class BasketSheetSummary extends StatelessWidget {
   const BasketSheetSummary({
@@ -13,7 +14,7 @@ class BasketSheetSummary extends StatelessWidget {
 
   final Decimal totalPrice;
   final String buttonText;
-  final VoidCallback onSubmit;
+  final VoidCallback? onSubmit;
 
   @override
   Widget build(BuildContext context) {
@@ -79,6 +80,7 @@ class BasketSheetSummary extends StatelessWidget {
             width: double.infinity,
             child: CupertinoButton.filled(
               onPressed: onSubmit,
+              disabledColor: orderButtonDisabledColor,
               child: Text(buttonText),
             ),
           ),

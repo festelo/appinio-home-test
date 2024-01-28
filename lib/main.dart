@@ -1,8 +1,9 @@
 import 'package:appinio_bloc/data/repositories/firestore_food_repository.dart';
+import 'package:appinio_bloc/data/repositories/firestore_order_repository.dart';
 import 'package:appinio_bloc/data/repositories/in_memory_basket_repository.dart';
-import 'package:appinio_bloc/domain/model/food_in_basket.dart';
 import 'package:appinio_bloc/domain/repositories/basket_repository.dart';
 import 'package:appinio_bloc/domain/repositories/food_repository.dart';
+import 'package:appinio_bloc/domain/repositories/order_repository.dart';
 import 'package:appinio_bloc/firebase_options.dart';
 import 'package:appinio_bloc/ui/pages/food_list_page/food_list_cubit.dart';
 import 'package:appinio_bloc/ui/pages/food_list_page/food_list_page.dart';
@@ -28,6 +29,11 @@ void main() async {
         ),
         RepositoryProvider<FoodRepository>(
           create: (context) => FirestoreFoodRepository(
+            context.read(),
+          ),
+        ),
+        RepositoryProvider<OrderRepository>(
+          create: (context) => FirestoreOrderRepository(
             context.read(),
           ),
         ),

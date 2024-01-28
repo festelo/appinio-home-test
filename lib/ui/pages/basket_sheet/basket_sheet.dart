@@ -44,7 +44,9 @@ class BasketSheet extends StatelessWidget {
                 BasketRoutes.address => CupertinoPageRoute(
                     settings: route,
                     builder: (context) => BlocProvider(
-                      create: (ctx) => BasketAddressCubit()..load(),
+                      create: (ctx) =>
+                          BasketAddressCubit(context.read(), context.read())
+                            ..load(),
                       child: const BasketAddressPage(),
                     ),
                   ),
