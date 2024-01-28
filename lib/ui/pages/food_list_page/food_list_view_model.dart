@@ -2,6 +2,7 @@
 import 'dart:collection';
 
 import 'package:appinio_bloc/domain/model/food.dart';
+import 'package:decimal/decimal.dart';
 import 'package:equatable/equatable.dart';
 
 class FoodListViewModel extends Equatable {
@@ -12,6 +13,8 @@ class FoodListViewModel extends Equatable {
     required this.filter,
     required this.searchPhrase,
     required this.filteredFoodList,
+    required this.basketTotalPrice,
+    required this.basketFoodCount,
   });
 
   FoodListViewModel.init()
@@ -20,7 +23,9 @@ class FoodListViewModel extends Equatable {
         isError = false,
         filter = FoodFilter.all,
         filteredFoodList = UnmodifiableListView([]),
-        searchPhrase = '';
+        searchPhrase = '',
+        basketFoodCount = 0,
+        basketTotalPrice = Decimal.zero;
 
   final UnmodifiableListView<Food> foodList;
 
@@ -34,6 +39,10 @@ class FoodListViewModel extends Equatable {
 
   final UnmodifiableListView<Food> filteredFoodList;
 
+  final int basketFoodCount;
+
+  final Decimal basketTotalPrice;
+
   int get currentTab => switch (filter) {
         FoodFilter.all => 0,
         FoodFilter.favorite => 1,
@@ -46,6 +55,8 @@ class FoodListViewModel extends Equatable {
     FoodFilter? filter,
     String? searchPhrase,
     UnmodifiableListView<Food>? filteredFoodList,
+    Decimal? basketTotalPrice,
+    int? basketFoodCount,
   }) {
     return FoodListViewModel(
       foodList: foodList ?? this.foodList,
@@ -54,6 +65,8 @@ class FoodListViewModel extends Equatable {
       filter: filter ?? this.filter,
       searchPhrase: searchPhrase ?? this.searchPhrase,
       filteredFoodList: filteredFoodList ?? this.filteredFoodList,
+      basketTotalPrice: basketTotalPrice ?? this.basketTotalPrice,
+      basketFoodCount: basketFoodCount ?? this.basketFoodCount,
     );
   }
 
@@ -79,6 +92,8 @@ class FoodListViewModel extends Equatable {
       filter,
       searchPhrase,
       filteredFoodList,
+      basketTotalPrice,
+      basketFoodCount,
     ];
   }
 }

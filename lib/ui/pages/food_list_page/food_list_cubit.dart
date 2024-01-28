@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'package:appinio_bloc/domain/model/food.dart';
+import 'package:appinio_bloc/domain/repositories/basket_repository.dart';
 import 'package:appinio_bloc/domain/repositories/food_repository.dart';
 import 'package:appinio_bloc/ui/pages/food_list_page/food_list_view_model.dart';
 import 'package:decimal/decimal.dart';
@@ -37,14 +38,21 @@ const pizzaList = [
 class FoodListCubit extends Cubit<FoodListViewModel> {
   FoodListCubit(
     this._foodRepository,
+    this._basketRepository,
   ) : super(FoodListViewModel.init());
 
   final FoodRepository _foodRepository;
+  final BasketRepository _basketRepository;
 
   Future<void> load() async {
     try {
       final foodList = await _foodRepository.list();
-      emit(state.copyWith(foodList: UnmodifiableListView(foodList)));
+      final basketList = await _basketRepository.list();
+      emit(
+        state.copyWith(
+          foodList: UnmodifiableListView(foodList),
+        ),
+      );
       applySearchAndFilter();
     } catch (e) {
       // todo: Display an error
@@ -151,5 +159,15 @@ class FoodListCubit extends Cubit<FoodListViewModel> {
     ]);
 
     emit(state.copyWith(filteredFoodList: foundFood));
+  }
+
+  Future<void> onAddToBasket(Food food) async {
+    await _basketRepository.add(food);
+    emit(
+      state.copyWith(
+        basketFoodCount: state.basketFoodCount + 1,
+        basketTotalPrice: state.basketTotalPrice + food.price,
+      ),
+    );
   }
 }

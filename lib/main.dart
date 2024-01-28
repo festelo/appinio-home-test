@@ -1,4 +1,7 @@
 import 'package:appinio_bloc/data/repositories/firestore_food_repository.dart';
+import 'package:appinio_bloc/data/repositories/in_memory_basket_repository.dart';
+import 'package:appinio_bloc/domain/model/food_in_basket.dart';
+import 'package:appinio_bloc/domain/repositories/basket_repository.dart';
 import 'package:appinio_bloc/domain/repositories/food_repository.dart';
 import 'package:appinio_bloc/firebase_options.dart';
 import 'package:appinio_bloc/ui/pages/food_list_page/food_list_cubit.dart';
@@ -28,6 +31,9 @@ void main() async {
             context.read(),
           ),
         ),
+        RepositoryProvider<BasketRepository>(
+          create: (context) => InMemoryBasketRepository(),
+        ),
       ],
       child: const AppinioRestaurantApp(),
     ),
@@ -50,7 +56,7 @@ class AppinioRestaurantApp extends StatelessWidget {
         DefaultWidgetsLocalizations.delegate,
       ],
       home: BlocProvider(
-        create: (ctx) => FoodListCubit(context.read())..load(),
+        create: (ctx) => FoodListCubit(context.read(), context.read())..load(),
         child: const FoodListPage(),
       ),
     );

@@ -16,6 +16,8 @@ class FoodListView extends StatefulWidget {
     required this.filteredFood,
     required this.onSearchChanged,
     required this.onFavoriteTap,
+    required this.onAddToBasket,
+    required this.onFoodTap,
     super.key,
   });
 
@@ -23,6 +25,8 @@ class FoodListView extends StatefulWidget {
   final UnmodifiableListView<Food> filteredFood;
   final ValueChanged<String> onSearchChanged;
   final void Function(Food) onFavoriteTap;
+  final void Function(Food) onAddToBasket;
+  final void Function(Food) onFoodTap;
 
   @override
   State<FoodListView> createState() => _FoodListViewState();
@@ -48,8 +52,8 @@ class _FoodListViewState extends State<FoodListView> {
             price: filteredFood[i].price,
             image: NetworkImage(filteredFood[i].imageUrl),
             description: filteredFood[i].description,
-            onTap: () => showFoodDetailsSheet(context, filteredFood[i]),
-            onPriceTap: () {},
+            onTap: () => widget.onFoodTap(filteredFood[i]),
+            onPriceTap: () => widget.onAddToBasket(filteredFood[i]),
             subaction: FavoriteButton(
               onFavoriteTap: () => widget.onFavoriteTap(filteredFood[i]),
               isFavorite: filteredFood[i].isFavorite,

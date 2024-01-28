@@ -1,8 +1,9 @@
+import 'package:appinio_bloc/domain/model/food.dart';
 import 'package:appinio_bloc/ui/pages/basket_sheet/basket_sheet.dart';
+import 'package:appinio_bloc/ui/pages/food_details_sheet/food_details_sheet.dart';
 import 'package:appinio_bloc/ui/pages/food_list_page/food_list_cubit.dart';
 import 'package:appinio_bloc/ui/pages/food_list_page/widgets/food_list_view.dart';
 import 'package:appinio_bloc/ui/widgets/order_button.dart';
-import 'package:decimal/decimal.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -11,8 +12,20 @@ class FoodListPage extends StatelessWidget {
 
   void onOpenBasket(BuildContext context) => showBasketSheet(context);
 
+  Future<void> onFoodTap(BuildContext context, Food food) async {
+    final onAddToBasket = context.read<FoodListCubit>().onAddToBasket;
+    final addedToBasket = await showFoodDetailsSheet(context, food);
+    if (addedToBasket) {
+      await onAddToBasket(food);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final basketFoodCount = context.select(
+      (FoodListCubit cubit) => cubit.state.basketFoodCount,
+    );
+
     return Stack(
       children: [
         SafeArea(
@@ -31,6 +44,8 @@ class FoodListPage extends StatelessWidget {
                         context.read<FoodListCubit>().changeSearchPhrase,
                     onFavoriteTap:
                         context.read<FoodListCubit>().onFavoriteSwitched,
+                    onAddToBasket: context.read<FoodListCubit>().onAddToBasket,
+                    onFoodTap: (f) => onFoodTap(context, f),
                   ),
                 ),
                 CupertinoTabBar(
@@ -54,16 +69,19 @@ class FoodListPage extends StatelessWidget {
             ),
           ),
         ),
-        Positioned(
-          bottom: 74,
-          left: 0,
-          right: 0,
-          child: OrderButton(
-            foodCount: 2,
-            price: Decimal.parse('12.34'),
-            onTap: () => onOpenBasket(context),
+        if (basketFoodCount != 0)
+          Positioned(
+            bottom: 74,
+            left: 0,
+            right: 0,
+            child: OrderButton(
+              foodCount: basketFoodCount,
+              price: context.select(
+                (FoodListCubit cubit) => cubit.state.basketTotalPrice,
+              ),
+              onTap: () => onOpenBasket(context),
+            ),
           ),
-        ),
       ],
     );
   }
