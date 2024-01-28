@@ -4,7 +4,6 @@ import 'package:appinio_bloc/theme.dart';
 import 'package:appinio_bloc/widgets/food_list_item.dart';
 import 'package:appinio_bloc/widgets/sheet_handle.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BasketFoodListPage extends StatelessWidget {
@@ -26,13 +25,52 @@ class BasketFoodListPage extends StatelessWidget {
           child: ListView.builder(
             itemCount: foodList.length,
             itemBuilder: (context, i) => FoodListItem(
-              image: NetworkImage(foodList[i].imageUrl),
-              title: foodList[i].name,
-              description: foodList[i].description,
-              price: foodList[i].price,
-              isFavorite: foodList[i].isFavorite,
-              onFavoriteTap: () {},
+              image: NetworkImage(foodList[i].food.imageUrl),
+              title: foodList[i].food.name,
+              description: foodList[i].food.description,
+              price: foodList[i].food.price,
               onTap: () {},
+              subaction: Container(
+                decoration: BoxDecoration(
+                  color: foodCounterBackgroundColor,
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                margin: const EdgeInsets.symmetric(vertical: 4),
+                child: Row(
+                  children: [
+                    CupertinoButton(
+                      padding: EdgeInsets.zero,
+                      minSize: 28,
+                      child: Icon(
+                        CupertinoIcons.minus,
+                        size: 14,
+                        color: foodCounterCountColor,
+                      ),
+                      onPressed: () {},
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 2),
+                      child: Text(
+                        foodList[i].count.toString(),
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: foodCounterCountColor,
+                        ),
+                      ),
+                    ),
+                    CupertinoButton(
+                      padding: EdgeInsets.zero,
+                      minSize: 28,
+                      child: Icon(
+                        CupertinoIcons.plus,
+                        size: 14,
+                        color: foodCounterCountColor,
+                      ),
+                      onPressed: () {},
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
         ),

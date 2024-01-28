@@ -9,10 +9,9 @@ class FoodListItem extends StatelessWidget {
     required this.title,
     required this.description,
     required this.price,
-    required this.isFavorite,
-    required this.onFavoriteTap,
     required this.onTap,
     this.onPriceTap,
+    this.subaction,
     super.key,
   });
 
@@ -20,11 +19,10 @@ class FoodListItem extends StatelessWidget {
   final String title;
   final String description;
   final Decimal price;
-  final bool isFavorite;
 
-  final VoidCallback onFavoriteTap;
   final VoidCallback? onPriceTap;
   final VoidCallback onTap;
+  final Widget? subaction;
 
   @override
   Widget build(BuildContext context) {
@@ -69,20 +67,7 @@ class FoodListItem extends StatelessWidget {
                           ),
                         ),
                       ),
-                      CupertinoButton(
-                        onPressed: onFavoriteTap,
-                        child: isFavorite
-                            ? Icon(
-                                CupertinoIcons.heart_fill,
-                                color: favoriteColor,
-                                size: 22,
-                              )
-                            : Icon(
-                                CupertinoIcons.heart,
-                                color: notFavoriteColor,
-                                size: 22,
-                              ),
-                      ),
+                      if (subaction != null) subaction!,
                     ],
                   ),
                 ],

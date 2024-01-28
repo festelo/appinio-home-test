@@ -12,6 +12,9 @@ Color get orderButtonMainColor => Colors.brown.shade600;
 Color get orderButtonTextColor => Colors.white;
 Color get sheetHandleColor => Colors.grey.shade600.withOpacity(0.6);
 
+Color get foodCounterBackgroundColor => Colors.grey.shade200;
+Color get foodCounterCountColor => Colors.black;
+
 TextStyle get titleTextStyle => const TextStyle(
       fontSize: 16,
       fontWeight: FontWeight.w600,

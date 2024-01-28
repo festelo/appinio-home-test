@@ -1,4 +1,5 @@
 import 'package:appinio_bloc/domain/model/food.dart';
+import 'package:appinio_bloc/domain/model/food_in_basket.dart';
 import 'package:appinio_bloc/pages/basket_sheet/basket_food_list_page/basket_food_list_view_model.dart';
 import 'package:appinio_bloc/pages/food_list_page/food_list_view_model.dart';
 import 'package:decimal/decimal.dart';
@@ -41,13 +42,16 @@ class BasketFoodListCubit extends Cubit<BasketFoodListViewModel> {
       state.copyWith(
         foodInBasket: pizzaList
             .map(
-              (p) => Food(
-                id: 'id',
-                name: p[0],
-                description: p[1],
-                imageUrl: p[2],
-                price: Decimal.parse('8.99'),
-                isFavorite: i++ % 5 == 1,
+              (p) => FoodInBasket(
+                food: Food(
+                  id: 'id',
+                  name: p[0],
+                  description: p[1],
+                  imageUrl: p[2],
+                  price: Decimal.parse('8.99'),
+                  isFavorite: i++ % 5 == 1,
+                ),
+                count: 1,
               ),
             )
             .toList(),
