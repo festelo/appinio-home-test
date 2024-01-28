@@ -163,4 +163,12 @@ class FoodListCubit extends Cubit<FoodListViewModel> {
       ),
     );
   }
+
+  void onFoodChanged({
+    required Food oldFood,
+    required Food newFood,
+  }) {
+    emit(state.copyWithFoodChange(oldFood: oldFood, newFood: newFood));
+    applySearchAndFilter();
+  }
 }

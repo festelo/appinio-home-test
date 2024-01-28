@@ -36,7 +36,6 @@ class BasketFoodListPage extends StatelessWidget {
                       title: foodList[i].food.name,
                       description: foodList[i].food.description,
                       price: foodList[i].food.price,
-                      onTap: () {},
                       subaction: FoodCounter(
                         count: foodList[i].count,
                         onMinusTap: () => context

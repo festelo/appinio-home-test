@@ -82,6 +82,17 @@ class FoodListViewModel extends Equatable {
     );
   }
 
+  FoodListViewModel copyWithFoodChange({
+    required Food oldFood,
+    required Food newFood,
+  }) {
+    return copyWith(
+      foodList: UnmodifiableListView(
+        foodList.map((f) => f == oldFood ? newFood : f).toList(),
+      ),
+    );
+  }
+
   @override
   List<Object> get props {
     return [

@@ -2,33 +2,51 @@ import 'dart:math';
 
 import 'package:appinio_bloc/domain/model/food.dart';
 import 'package:appinio_bloc/ui/extensions/price_extensions.dart';
+import 'package:appinio_bloc/ui/pages/food_details_sheet/food_details_cubit.dart';
+import 'package:appinio_bloc/ui/pages/food_details_sheet/food_details_result.dart';
 import 'package:appinio_bloc/ui/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-Future<bool> showFoodDetailsSheet(BuildContext context, Food food) async {
+Future<FoodDetailsResult> showFoodDetailsSheet(
+  BuildContext context,
+  Food food,
+) async {
+  final foodDetailsCubit = FoodDetailsCubit(
+    food,
+    context.read(),
+    context.read(),
+  );
   final res = await showModalBottomSheet<bool?>(
     context: context,
     isScrollControlled: true,
     backgroundColor: CupertinoTheme.of(context).scaffoldBackgroundColor,
     builder: (_) => SizedBox(
       height: min(MediaQuery.of(context).size.height - 50, 450),
-      child: FoodDetailsSheet(food: food),
+      child: BlocProvider.value(
+        value: foodDetailsCubit,
+        child: const FoodDetailsSheet(),
+      ),
     ),
   );
-  return res ?? false;
+  await foodDetailsCubit.close();
+  return FoodDetailsResult(
+    food: foodDetailsCubit.state.food,
+    wasAddedToBasket: res ?? false,
+  );
 }
 
 class FoodDetailsSheet extends StatelessWidget {
-  const FoodDetailsSheet({
-    required this.food,
-    super.key,
-  });
+  const FoodDetailsSheet({super.key});
 
-  final Food food;
+  Future<void> _onLikeTap(BuildContext context) async {
+    await context.read<FoodDetailsCubit>().onFavoriteSwitched();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final food = context.select((FoodDetailsCubit cubit) => cubit.state.food);
     return Column(
       children: [
         Expanded(
@@ -53,6 +71,7 @@ class FoodDetailsSheet extends StatelessWidget {
                     ),
                   ),
                   CupertinoButton(
+                    onPressed: () => _onLikeTap(context),
                     child: food.isFavorite
                         ? Icon(
                             CupertinoIcons.heart_fill,
@@ -64,7 +83,6 @@ class FoodDetailsSheet extends StatelessWidget {
                             color: notFavoriteColor,
                             size: 24,
                           ),
-                    onPressed: () {},
                   ),
                 ],
               ),

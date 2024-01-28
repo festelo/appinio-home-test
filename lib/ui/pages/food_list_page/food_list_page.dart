@@ -18,8 +18,10 @@ class FoodListPage extends StatelessWidget {
 
   Future<void> onFoodTap(BuildContext context, Food food) async {
     final onAddToBasket = context.read<FoodListCubit>().onAddToBasket;
-    final addedToBasket = await showFoodDetailsSheet(context, food);
-    if (addedToBasket) {
+    final onFoodChanged = context.read<FoodListCubit>().onFoodChanged;
+    final result = await showFoodDetailsSheet(context, food);
+    onFoodChanged(oldFood: food, newFood: result.food);
+    if (result.wasAddedToBasket) {
       await onAddToBasket(food);
     }
   }

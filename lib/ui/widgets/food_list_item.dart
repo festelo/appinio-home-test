@@ -9,7 +9,7 @@ class FoodListItem extends StatelessWidget {
     required this.title,
     required this.description,
     required this.price,
-    required this.onTap,
+    this.onTap,
     this.onPriceTap,
     this.subaction,
     super.key,
@@ -21,7 +21,7 @@ class FoodListItem extends StatelessWidget {
   final Decimal price;
 
   final VoidCallback? onPriceTap;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   final Widget? subaction;
 
   @override
