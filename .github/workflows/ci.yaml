@@ -3,7 +3,7 @@ name: Appinio Home Test CI/CD
 on:
   workflow_dispatch:
   push:
-    branches: [cicd]
+    branches: [main]
 
 defaults:
   run:
