@@ -11,8 +11,8 @@ import 'package:appinio_bloc/ui/theme.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -56,11 +56,8 @@ class AppinioRestaurantApp extends StatelessWidget {
       theme: CupertinoThemeData(
         primaryColor: bottomBarActionColor,
       ),
-      localizationsDelegates: const [
-        DefaultMaterialLocalizations.delegate,
-        DefaultCupertinoLocalizations.delegate,
-        DefaultWidgetsLocalizations.delegate,
-      ],
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       home: BlocProvider(
         create: (ctx) => FoodListCubit(context.read(), context.read())..load(),
         child: const FoodListPage(),

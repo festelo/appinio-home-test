@@ -3,6 +3,7 @@ import 'package:appinio_bloc/ui/theme.dart';
 import 'package:decimal/decimal.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class OrderButton extends StatelessWidget {
   const OrderButton({
@@ -60,7 +61,7 @@ class OrderButton extends StatelessWidget {
                 ),
                 const SizedBox(width: 16),
                 Text(
-                  'View order',
+                  AppLocalizations.of(context)!.order_button_title,
                   style: TextStyle(
                     color: orderButtonTextColor,
                     fontSize: 16,

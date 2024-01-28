@@ -1,5 +1,6 @@
 import 'package:appinio_bloc/ui/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RestaurantHeader extends StatelessWidget {
   const RestaurantHeader({super.key});
@@ -45,12 +46,12 @@ class RestaurantHeaderDelegate extends SliverPersistentHeaderDelegate {
           Expanded(
             child: Opacity(
               opacity: opacityAnimationValue,
-              child: const FittedBox(
+              child: FittedBox(
                 fit: BoxFit.scaleDown,
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  "Appinio's Restaurant",
-                  style: TextStyle(
+                  AppLocalizations.of(context)!.food_list_page_title,
+                  style: const TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w600,
                   ),

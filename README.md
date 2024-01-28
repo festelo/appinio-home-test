@@ -53,5 +53,5 @@ As per the requirements, Firestore is used to store food, and favorites are also
 * The `firebase_options.dart` file is included ([it's safe](https://firebase.google.com/docs/projects/api-keys#api-keys-for-firebase-are-different)), so it should be possible to build the repo without any changes (clone & build).
 * The search bar searches not only in food titles, but also in their description.
 * I decided not to implement pagination, as restaurants typically have only a few menu items, which can be easily loaded without it.
+* **Localization** is implemented, with only two strings as examples; all other text remains hardcoded
 * There is no error handling in case of poor or no internet connection.
-* There is no i18n, all strings are hardcoded
