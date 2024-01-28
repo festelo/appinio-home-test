@@ -1,4 +1,6 @@
 # Appinio Home Test
+[![Open in Web](https://img.shields.io/badge/Open_in_Web-gray?style=flat-square&logoColor=white&logo=googlechrome)](https://festelo.github.io/appinio-home-test/)
+[![Download APK](https://img.shields.io/badge/Download_APK-gray?style=flat-square&logo=android)](https://github.com/festelo/appinio-home-test/releases)
 
 ![App screenshot](./screenshot.png)
 
@@ -48,6 +50,13 @@ As per the requirements, Firestore is used to store food, and favorites are also
   + `food`
     + `foodId`
     + `count`
+
+## CI/CD
+
+The project uses Github Actions for CI/CD, with two jobs executed upon pushes to the 'main' branch:
+
+* The `android` job builds the android apk and publishes it in the `releases` section.
+* The `web` job builds web application and deploys it to the `gh-pages` branch, which is used for github pages.
 
 ## Notes
 
