@@ -4,12 +4,14 @@ import 'package:flutter/cupertino.dart';
 class FoodCounter extends StatelessWidget {
   const FoodCounter({
     required this.count,
-    required this.onChange,
+    required this.onMinusTap,
+    required this.onPlusTap,
     super.key,
   });
 
   final int count;
-  final ValueChanged<int> onChange;
+  final VoidCallback onMinusTap;
+  final VoidCallback onPlusTap;
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +28,12 @@ class FoodCounter extends StatelessWidget {
               horizontal: 12,
             ),
             minSize: 28,
+            onPressed: onMinusTap,
             child: Icon(
               CupertinoIcons.minus,
               size: 14,
               color: foodCounterCountColor,
             ),
-            onPressed: () => onChange(count - 1),
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 2),
@@ -48,12 +50,12 @@ class FoodCounter extends StatelessWidget {
               horizontal: 12,
             ),
             minSize: 28,
+            onPressed: onPlusTap,
             child: Icon(
               CupertinoIcons.plus,
               size: 14,
               color: foodCounterCountColor,
             ),
-            onPressed: () => onChange(count + 1),
           ),
         ],
       ),

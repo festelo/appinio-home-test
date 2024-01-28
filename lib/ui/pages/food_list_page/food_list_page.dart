@@ -10,7 +10,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class FoodListPage extends StatelessWidget {
   const FoodListPage({super.key});
 
-  void onOpenBasket(BuildContext context) => showBasketSheet(context);
+  Future<void> onOpenBasket(BuildContext context) async {
+    final loadBasket = context.read<FoodListCubit>().loadBasket;
+    await showBasketSheet(context);
+    await loadBasket();
+  }
 
   Future<void> onFoodTap(BuildContext context, Food food) async {
     final onAddToBasket = context.read<FoodListCubit>().onAddToBasket;

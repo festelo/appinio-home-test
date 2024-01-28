@@ -1,5 +1,6 @@
 import 'dart:collection';
 
+import 'package:appinio_bloc/domain/extensions/food_in_basket.dart';
 import 'package:appinio_bloc/domain/model/food.dart';
 import 'package:appinio_bloc/domain/repositories/basket_repository.dart';
 import 'package:appinio_bloc/domain/repositories/food_repository.dart';
@@ -46,8 +47,31 @@ class FoodListCubit extends Cubit<FoodListViewModel> {
 
   Future<void> load() async {
     try {
-      final foodList = await _foodRepository.list();
+      await loadFood();
+      await loadBasket();
+    } finally {
+      emit(state.copyWith(isLoading: false));
+    }
+  }
+
+  Future<void> loadBasket() async {
+    try {
       final basketList = await _basketRepository.list();
+      emit(
+        state.copyWith(
+          basketFoodCount: basketList.totalCount,
+          basketTotalPrice: basketList.totalPrice,
+        ),
+      );
+    } catch (e) {
+      // todo: Display an error
+      rethrow;
+    }
+  }
+
+  Future<void> loadFood() async {
+    try {
+      final foodList = await _foodRepository.list();
       emit(
         state.copyWith(
           foodList: UnmodifiableListView(foodList),
@@ -57,8 +81,6 @@ class FoodListCubit extends Cubit<FoodListViewModel> {
     } catch (e) {
       // todo: Display an error
       rethrow;
-    } finally {
-      emit(state.copyWith(isLoading: false));
     }
   }
 

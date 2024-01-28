@@ -2,7 +2,6 @@ import 'package:appinio_bloc/ui/pages/basket_sheet/basket_food_list_page/basket_
 import 'package:appinio_bloc/ui/pages/basket_sheet/routes.dart';
 import 'package:appinio_bloc/ui/pages/basket_sheet/widgets/basket_sheet_content_decoration.dart';
 import 'package:appinio_bloc/ui/pages/basket_sheet/widgets/basket_sheet_summary.dart';
-import 'package:appinio_bloc/ui/theme.dart';
 import 'package:appinio_bloc/ui/widgets/food_counter.dart';
 import 'package:appinio_bloc/ui/widgets/food_list_item.dart';
 import 'package:flutter/cupertino.dart';
@@ -30,15 +29,21 @@ class BasketFoodListPage extends StatelessWidget {
             child: ListView.builder(
               itemCount: foodList.length,
               itemBuilder: (context, i) => FoodListItem(
-                  image: NetworkImage(foodList[i].food.imageUrl),
-                  title: foodList[i].food.name,
-                  description: foodList[i].food.description,
-                  price: foodList[i].food.price,
-                  onTap: () {},
-                  subaction: FoodCounter(
-                    count: 1,
-                    onChange: (_) {},
-                  )),
+                image: NetworkImage(foodList[i].food.imageUrl),
+                title: foodList[i].food.name,
+                description: foodList[i].food.description,
+                price: foodList[i].food.price,
+                onTap: () {},
+                subaction: FoodCounter(
+                  count: foodList[i].count,
+                  onMinusTap: () => context
+                      .read<BasketFoodListCubit>()
+                      .onRemoveFood(foodList[i].food),
+                  onPlusTap: () => context
+                      .read<BasketFoodListCubit>()
+                      .onAddFood(foodList[i].food),
+                ),
+              ),
             ),
           ),
           BasketSheetSummary(

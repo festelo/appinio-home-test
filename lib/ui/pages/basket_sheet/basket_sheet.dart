@@ -10,8 +10,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart' show showModalBottomSheet;
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-Future<bool> showBasketSheet(BuildContext context) async {
-  final res = await showModalBottomSheet<bool?>(
+Future<void> showBasketSheet(BuildContext context) async {
+  await showModalBottomSheet<bool?>(
     context: context,
     isScrollControlled: true,
     useSafeArea: true,
@@ -21,7 +21,6 @@ Future<bool> showBasketSheet(BuildContext context) async {
       child: const BasketSheet(),
     ),
   );
-  return res ?? false;
 }
 
 class BasketSheet extends StatelessWidget {
@@ -53,7 +52,8 @@ class BasketSheet extends StatelessWidget {
                     fullscreenDialog: true,
                     settings: route,
                     builder: (context) => BlocProvider(
-                      create: (ctx) => BasketFoodListCubit()..load(),
+                      create: (ctx) =>
+                          BasketFoodListCubit(context.read())..load(),
                       child: const BasketFoodListPage(),
                     ),
                   ),
