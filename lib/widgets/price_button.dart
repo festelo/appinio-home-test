@@ -13,7 +13,7 @@ class PriceButton extends StatelessWidget {
   });
 
   final Decimal price;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {

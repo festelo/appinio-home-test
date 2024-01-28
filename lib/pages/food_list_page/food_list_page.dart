@@ -1,5 +1,5 @@
+import 'package:appinio_bloc/pages/basket_sheet/basket_sheet.dart';
 import 'package:appinio_bloc/pages/food_list_page/food_list_cubit.dart';
-import 'package:appinio_bloc/pages/food_list_page/food_list_view_model.dart';
 import 'package:appinio_bloc/pages/food_list_page/widgets/food_list_view.dart';
 import 'package:appinio_bloc/widgets/order_button.dart';
 import 'package:decimal/decimal.dart';
@@ -8,6 +8,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FoodListPage extends StatelessWidget {
   const FoodListPage({super.key});
+
+  void onOpenBasket(BuildContext context) => showBasketSheet(context);
 
   @override
   Widget build(BuildContext context) {
@@ -47,13 +49,14 @@ class FoodListPage extends StatelessWidget {
           ),
         ),
         Positioned(
-          child: OrderButton(
-            foodCount: 2,
-            price: Decimal.parse('12.34'),
-          ),
           bottom: 74,
           left: 0,
           right: 0,
+          child: OrderButton(
+            foodCount: 2,
+            price: Decimal.parse('12.34'),
+            onTap: () => onOpenBasket(context),
+          ),
         ),
       ],
     );

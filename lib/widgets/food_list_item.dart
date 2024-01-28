@@ -11,8 +11,8 @@ class FoodListItem extends StatelessWidget {
     required this.price,
     required this.isFavorite,
     required this.onFavoriteTap,
-    required this.onPriceTap,
     required this.onTap,
+    this.onPriceTap,
     super.key,
   });
 
@@ -23,7 +23,7 @@ class FoodListItem extends StatelessWidget {
   final bool isFavorite;
 
   final VoidCallback onFavoriteTap;
-  final VoidCallback onPriceTap;
+  final VoidCallback? onPriceTap;
   final VoidCallback onTap;
 
   @override

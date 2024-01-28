@@ -46,7 +46,7 @@ class SearchPersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
           Container(
             width: double.infinity,
             height: 1,
-            color: searchBarDividerColor,
+            color: dividerColor,
           )
         ],
       ),
