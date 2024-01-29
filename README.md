@@ -18,12 +18,12 @@
   + `repositories` - contains interfaces of repositories, contracts that can be used by UI and should be implemented in Data.
   + `model` - contains business entities with which repositories operate
   + `extensions` - extensions on models, some simple logic
-* lib/data - takes care of communicating with the 'outer world' and interacts with third party libraries. Databases, REST, etc. 
+* `lib/data` - takes care of communicating with the 'outer world' and interacts with third party libraries. Databases, REST, etc. 
   + `repositories` - implementations of repositories defined in 'domain'
   + `dto` - internal models with which repositories operate inside the 'data' level
   + `firestore_collections` - definitions of firestore collections (collection names and list of their fields)
   + `mappers` - mappers from DTOs to 'domain' entities
-* localization - contains .arb files for localization
+* `localization` - contains .arb files for localization
 
 ## Tests
 
@@ -91,3 +91,4 @@ service cloud.firestore {
 * I decided not to implement pagination, as restaurants typically have only a few menu items, which can be easily loaded without it.
 * **Localization** is implemented, with only two strings as examples; all other text remains hardcoded
 * There is no error handling in case of poor or no internet connection.
+* Pull-to-refresh is available on the main page
