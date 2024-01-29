@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:appinio_bloc/ui/pages/basket_sheet/basket_food_list_page/basket_food_list_cubit.dart';
 import 'package:appinio_bloc/ui/pages/basket_sheet/basket_food_list_page/widgets/no_food_placeholder.dart';
 import 'package:appinio_bloc/ui/pages/basket_sheet/routes.dart';
