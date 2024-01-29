@@ -15,6 +15,7 @@ Color get sheetHandleColor => Colors.grey.shade600.withOpacity(0.6);
 Color get foodCounterBackgroundColor => Colors.grey.shade200;
 Color get foodCounterCountColor => Colors.black;
 Color get orderButtonDisabledColor => Colors.grey.shade400;
+Color get transparentColor => Colors.transparent;
 
 TextStyle get titleTextStyle => const TextStyle(
       fontSize: 16,

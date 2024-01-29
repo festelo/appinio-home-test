@@ -1,13 +1,18 @@
 import 'package:appinio_bloc/ui/pages/basket_sheet/basket_address_page/basket_address_cubit.dart';
 import 'package:appinio_bloc/ui/pages/basket_sheet/routes.dart';
-import 'package:appinio_bloc/ui/pages/basket_sheet/widgets/basket_sheet_content_decoration.dart';
 import 'package:appinio_bloc/ui/pages/basket_sheet/widgets/basket_sheet_summary.dart';
 import 'package:appinio_bloc/ui/theme.dart';
+import 'package:appinio_bloc/ui/widgets/sheet_content_decoration.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BasketAddressPage extends StatefulWidget {
-  const BasketAddressPage({super.key});
+  const BasketAddressPage({
+    required this.scrollController,
+    super.key,
+  });
+
+  final ScrollController scrollController;
 
   @override
   State<BasketAddressPage> createState() => _BasketAddressPageState();
@@ -41,12 +46,13 @@ class _BasketAddressPageState extends State<BasketAddressPage> {
       (BasketAddressCubit cubit) => cubit.state.totalPrice,
     );
 
-    return BasketSheetContentDecoration(
+    return SheetContentDecoration(
       child: Column(
         children: [
           Expanded(
             child: ListView(
               padding: const EdgeInsets.symmetric(horizontal: 16),
+              controller: widget.scrollController,
               children: [
                 TextPadding(
                   child: Text(

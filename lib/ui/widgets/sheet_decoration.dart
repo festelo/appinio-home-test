@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
-class BasketSheetDecoration extends StatelessWidget {
-  const BasketSheetDecoration({
+class SheetDecoration extends StatelessWidget {
+  const SheetDecoration({
     required this.child,
     super.key,
   });
@@ -13,7 +13,9 @@ class BasketSheetDecoration extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: CupertinoTheme.of(context).scaffoldBackgroundColor,
-        borderRadius: BorderRadius.circular(28),
+        borderRadius: const BorderRadius.vertical(
+          top: Radius.circular(28),
+        ),
       ),
       child: child,
     );

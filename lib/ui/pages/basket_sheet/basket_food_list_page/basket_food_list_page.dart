@@ -1,15 +1,21 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:appinio_bloc/ui/pages/basket_sheet/basket_food_list_page/basket_food_list_cubit.dart';
 import 'package:appinio_bloc/ui/pages/basket_sheet/basket_food_list_page/widgets/no_food_placeholder.dart';
 import 'package:appinio_bloc/ui/pages/basket_sheet/routes.dart';
-import 'package:appinio_bloc/ui/pages/basket_sheet/widgets/basket_sheet_content_decoration.dart';
 import 'package:appinio_bloc/ui/pages/basket_sheet/widgets/basket_sheet_summary.dart';
 import 'package:appinio_bloc/ui/widgets/food_counter.dart';
 import 'package:appinio_bloc/ui/widgets/food_list_item.dart';
+import 'package:appinio_bloc/ui/widgets/sheet_content_decoration.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BasketFoodListPage extends StatelessWidget {
-  const BasketFoodListPage({super.key});
+  const BasketFoodListPage({
+    required this.scrollController,
+    super.key,
+  });
+
+  final ScrollController scrollController;
 
   void onNext(BuildContext context) =>
       Navigator.of(context).pushNamed(BasketRoutes.address);
@@ -23,13 +29,14 @@ class BasketFoodListPage extends StatelessWidget {
       (BasketFoodListCubit cubit) => cubit.state.totalPrice,
     );
 
-    return BasketSheetContentDecoration(
+    return SheetContentDecoration(
       child: Column(
         children: [
           Expanded(
             child: foodList.isEmpty
                 ? const NoFoodPlaceholder()
                 : ListView.builder(
+                    controller: scrollController,
                     itemCount: foodList.length,
                     itemBuilder: (context, i) => FoodListItem(
                       image: NetworkImage(foodList[i].food.imageUrl),

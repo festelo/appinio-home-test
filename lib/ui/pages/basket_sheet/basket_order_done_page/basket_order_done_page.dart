@@ -1,4 +1,4 @@
-import 'package:appinio_bloc/ui/pages/basket_sheet/widgets/basket_sheet_content_decoration.dart';
+import 'package:appinio_bloc/ui/widgets/sheet_content_decoration.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -10,7 +10,7 @@ class BasketOrderDonePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BasketSheetContentDecoration(
+    return SheetContentDecoration(
       child: Column(
         children: [
           const Expanded(

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
-class BasketSheetContentDecoration extends StatelessWidget {
-  const BasketSheetContentDecoration({
+class SheetContentDecoration extends StatelessWidget {
+  const SheetContentDecoration({
     required this.child,
     super.key,
   });

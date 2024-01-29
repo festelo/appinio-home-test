@@ -4,9 +4,11 @@ import 'package:appinio_bloc/ui/pages/basket_sheet/basket_food_list_page/basket_
 import 'package:appinio_bloc/ui/pages/basket_sheet/basket_food_list_page/basket_food_list_page.dart';
 import 'package:appinio_bloc/ui/pages/basket_sheet/basket_order_done_page/basket_order_done_page.dart';
 import 'package:appinio_bloc/ui/pages/basket_sheet/routes.dart';
-import 'package:appinio_bloc/ui/pages/basket_sheet/widgets/basket_sheet_decoration.dart';
+import 'package:appinio_bloc/ui/theme.dart';
+import 'package:appinio_bloc/ui/widgets/draggable_scrollable_sheet_wrapper.dart';
+import 'package:appinio_bloc/ui/widgets/sheet_decoration.dart';
 import 'package:appinio_bloc/ui/widgets/sheet_handle.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/cupertino.dart' hide DraggableScrollableSheet;
 import 'package:flutter/material.dart' show showModalBottomSheet;
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,22 +17,28 @@ Future<void> showBasketSheet(BuildContext context) async {
     context: context,
     isScrollControlled: true,
     useSafeArea: true,
-    backgroundColor: CupertinoTheme.of(context).scaffoldBackgroundColor,
-    builder: (_) => SizedBox(
+    backgroundColor: transparentColor,
+    builder: (_) => DraggableScrollabeSheetWrapper(
+      minSize: 300,
       height: MediaQuery.of(context).size.height - 50,
-      child: const BasketSheet(),
+      builder: (context, scrollController) => BasketSheet(
+        scrollController: scrollController,
+      ),
     ),
   );
 }
 
 class BasketSheet extends StatelessWidget {
   const BasketSheet({
+    required this.scrollController,
     super.key,
   });
 
+  final ScrollController scrollController;
+
   @override
   Widget build(BuildContext context) {
-    return BasketSheetDecoration(
+    return SheetDecoration(
       child: Column(
         children: [
           const SheetHandle(),
@@ -47,7 +55,9 @@ class BasketSheet extends StatelessWidget {
                       create: (ctx) =>
                           BasketAddressCubit(context.read(), context.read())
                             ..load(),
-                      child: const BasketAddressPage(),
+                      child: BasketAddressPage(
+                        scrollController: scrollController,
+                      ),
                     ),
                   ),
                 BasketRoutes.foodList || _ => CupertinoPageRoute(
@@ -56,7 +66,9 @@ class BasketSheet extends StatelessWidget {
                     builder: (context) => BlocProvider(
                       create: (ctx) =>
                           BasketFoodListCubit(context.read())..load(),
-                      child: const BasketFoodListPage(),
+                      child: BasketFoodListPage(
+                        scrollController: scrollController,
+                      ),
                     ),
                   ),
               },
