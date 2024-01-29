@@ -51,6 +51,7 @@ class FoodListPage extends StatelessWidget {
                     onFavoriteTap:
                         context.read<FoodListCubit>().onFavoriteSwitched,
                     onAddToBasket: context.read<FoodListCubit>().onAddToBasket,
+                    onRefresh: context.read<FoodListCubit>().load,
                     onFoodTap: (f) => onFoodTap(context, f),
                   ),
                 ),

@@ -8,7 +8,6 @@ import 'package:appinio_bloc/ui/widgets/loading_placeholder.dart';
 import 'package:appinio_bloc/ui/widgets/restaurant_header.dart';
 import 'package:appinio_bloc/ui/widgets/search_persistent_header.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 class FoodListView extends StatefulWidget {
   const FoodListView({
@@ -18,6 +17,7 @@ class FoodListView extends StatefulWidget {
     required this.onFavoriteTap,
     required this.onAddToBasket,
     required this.onFoodTap,
+    required this.onRefresh,
     super.key,
   });
 
@@ -27,6 +27,7 @@ class FoodListView extends StatefulWidget {
   final void Function(Food) onFavoriteTap;
   final void Function(Food) onAddToBasket;
   final void Function(Food) onFoodTap;
+  final Future<void> Function() onRefresh;
 
   @override
   State<FoodListView> createState() => _FoodListViewState();
@@ -45,6 +46,12 @@ class _FoodListViewState extends State<FoodListView> {
         const RestaurantHeader(),
         SearchPersistentHeader(
           onChanged: widget.onSearchChanged,
+        ),
+        CupertinoSliverRefreshControl(
+          onRefresh: widget.onRefresh,
+        ),
+        const SliverPadding(
+          padding: EdgeInsets.only(top: 16),
         ),
         if (filteredFood.isEmpty)
           const SliverFillRemaining(
