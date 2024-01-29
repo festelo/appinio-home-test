@@ -1,0 +1,39 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "bloc",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "bloc (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "bloc (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "architecture_lints",
+            "cwd": "tools\\custom_lints\\architecture_lints",
+            "request": "attach",
+            "vmServiceUri": "${input:vmServiceUri}",
+            "type": "dart"
+        }
+    ],
+    "inputs": [
+        {
+            "id": "vmServiceUri",
+            "description": "VM service uri",
+            "type": "promptString"
+        }
+    ]
+}

@@ -2,7 +2,7 @@
 [![Open in Web](https://img.shields.io/badge/Open_in_Web-gray?style=flat-square&logoColor=white&logo=googlechrome)](https://festelo.github.io/appinio-home-test/)
 [![Download APK](https://img.shields.io/badge/Download_APK-gray?style=flat-square&logo=android)](https://github.com/festelo/appinio-home-test/releases)
 
-![App screenshot](./screenshot.png)
+![App screenshot](docs/images/screenshot.png)
 
 ## Project structure
 
@@ -24,6 +24,15 @@
   + `firestore_collections` - definitions of firestore collections (collection names and list of their fields)
   + `mappers` - mappers from DTOs to 'domain' entities
 * `localization` - contains .arb files for localization
+
+## Custom lints
+
+I created a custom lint as an example; this lint checks for the usage of `data` code in the `ui` layer and warns the developer if it occurs. The [custom_lint](https://pub.dev/packages/custom_lint) package is used.  
+[Link to the lint](tools/custom_lints/architecture_lints/lib/lints/ui_imports_lint.dart)  
+  
+![Lint screenshot](docs/images/data_in_ui_lint.png)
+  
+
 
 ## Tests
 
