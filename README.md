@@ -33,13 +33,20 @@ I created a custom lint as an example; this lint checks for the usage of `data` 
 ![Lint screenshot](docs/images/data_in_ui_lint.png)
   
 
+## Unit Tests
 
-## Tests
-
-Currently, there is only one test, which serves as an example. However, it's possible to write tests for any part of the app (including golden image tests).  
+Currently, there is only one unit test, which serves as an example. However, it's possible to write tests for any part of the app.  
 The test is written for basket_address_cubit and covers two cases: cubit loading and street changing.  
 [Link to the test](test/ui/pages/basket_sheet/basket_address_page/basket_address_cubit_test.dart)  
 
+## Golden Image Tests
+
+There is one golden image test implemented. Golden image tests are useful for the visual comparison of UI changes and can be integrated with git hooks or github checks.  
+The test for the basket_address_page demonstrates the page in three different sizes.  
+[Link to the test](test/ui/pages/basket_sheet/basket_address_page/basket_address_page_test.dart)  
+  
+![Lint screenshot](test/ui/pages/basket_sheet/basket_address_page/goldens/macos/basket_address_page.png)
+  
 
 ## CI/CD
 
