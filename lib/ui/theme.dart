@@ -11,11 +11,11 @@ Color get textFieldClearTextActionColor => Colors.black;
 Color get orderButtonMainColor => Colors.brown.shade600;
 Color get orderButtonTextColor => Colors.white;
 Color get sheetHandleColor => Colors.grey.shade600.withOpacity(0.6);
-
 Color get foodCounterBackgroundColor => Colors.grey.shade200;
 Color get foodCounterCountColor => Colors.black;
 Color get orderButtonDisabledColor => Colors.grey.shade400;
 Color get transparentColor => Colors.transparent;
+Color get placeholderImageColor => Colors.grey.shade300;
 
 TextStyle get titleTextStyle => const TextStyle(
       fontSize: 16,

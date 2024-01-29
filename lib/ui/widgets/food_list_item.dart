@@ -1,7 +1,11 @@
 import 'package:appinio_bloc/ui/theme.dart';
+import 'package:appinio_bloc/ui/widgets/food_image_placeholder.dart';
 import 'package:appinio_bloc/ui/widgets/price_button.dart';
 import 'package:decimal/decimal.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+const _badImage = NetworkImage('');
 
 class FoodListItem extends StatelessWidget {
   const FoodListItem({
@@ -36,10 +40,15 @@ class FoodListItem extends StatelessWidget {
             const SizedBox(width: 16),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16),
-              child: Image(
+              child: FadeInImage(
                 image: image,
                 height: 120,
                 width: 120,
+                placeholder: _badImage,
+                placeholderErrorBuilder: (context, error, stackTrace) =>
+                    const FoodImagePlaceholder(),
+                imageErrorBuilder: (context, error, stackTrace) =>
+                    const FoodImagePlaceholder(),
               ),
             ),
             const SizedBox(width: 16),
