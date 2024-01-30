@@ -18,9 +18,9 @@ Future<void> showBasketSheet(BuildContext context) async {
     isScrollControlled: true,
     useSafeArea: true,
     backgroundColor: transparentColor,
-    builder: (_) => DraggableScrollabeSheetWrapper(
-      minSize: 300,
-      height: MediaQuery.of(context).size.height - 50,
+    builder: (context) => DraggableScrollabeSheetWrapper(
+      minSize: (_) => 300,
+      height: (constraints) => constraints.maxHeight - 50,
       builder: (context, scrollController) => BasketSheet(
         scrollController: scrollController,
       ),

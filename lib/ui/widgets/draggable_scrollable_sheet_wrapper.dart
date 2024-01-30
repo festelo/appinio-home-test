@@ -12,8 +12,8 @@ class DraggableScrollabeSheetWrapper extends StatelessWidget {
   });
 
   final ScrollableWidgetBuilder builder;
-  final double minSize;
-  final double height;
+  final double Function(BoxConstraints constraints) minSize;
+  final double Function(BoxConstraints constraints) height;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +25,9 @@ class DraggableScrollabeSheetWrapper extends StatelessWidget {
         ),
         LayoutBuilder(
           builder: (context, constraints) {
+            final height = this.height(constraints);
+            final minSize = this.minSize(constraints);
+
             final maxSizeInPixels = min(height, constraints.maxHeight);
             final targetMinSizeInPixels = min(maxSizeInPixels - 1, minSize);
 

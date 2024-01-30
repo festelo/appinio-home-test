@@ -4,6 +4,7 @@ import 'package:appinio_bloc/ui/pages/food_details_sheet/food_details_cubit.dart
 import 'package:appinio_bloc/ui/pages/food_details_sheet/food_details_result.dart';
 import 'package:appinio_bloc/ui/theme.dart';
 import 'package:appinio_bloc/ui/widgets/draggable_scrollable_sheet_wrapper.dart';
+import 'package:appinio_bloc/ui/widgets/sheet_bottom_padding.dart';
 import 'package:appinio_bloc/ui/widgets/sheet_decoration.dart';
 import 'package:appinio_bloc/ui/widgets/sheet_handle.dart';
 import 'package:flutter/cupertino.dart';
@@ -25,8 +26,8 @@ Future<FoodDetailsResult> showFoodDetailsSheet(
     backgroundColor: transparentColor,
     useSafeArea: true,
     builder: (_) => DraggableScrollabeSheetWrapper(
-      height: 525,
-      minSize: 200,
+      height: (_) => 525,
+      minSize: (_) => 200,
       builder: (context, scrollController) => BlocProvider.value(
         value: foodDetailsCubit,
         child: FoodDetailsSheet(scrollController: scrollController),
@@ -113,7 +114,7 @@ class FoodDetailsSheet extends StatelessWidget {
               onPressed: () => Navigator.of(context).pop(true),
             ),
           ),
-          const SizedBox(height: 16),
+          const SheetBottomPadding(),
         ],
       ),
     );

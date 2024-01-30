@@ -1,5 +1,6 @@
 import 'package:appinio_bloc/ui/extensions/price_extensions.dart';
 import 'package:appinio_bloc/ui/theme.dart';
+import 'package:appinio_bloc/ui/widgets/sheet_bottom_padding.dart';
 import 'package:decimal/decimal.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -84,7 +85,7 @@ class BasketSheetSummary extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(height: 32),
+        const SheetBottomPadding(),
       ],
     );
   }
