@@ -41,7 +41,7 @@ Future<void> widgetScreenshotTest(
             GoldenTestScenario(
               name: 'default',
               child: Builder(builder: widgetBuilder),
-            )
+            ),
         ],
       );
     },
