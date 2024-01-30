@@ -34,8 +34,9 @@ class FoodListPage extends StatelessWidget {
 
     return Stack(
       children: [
-        SafeArea(
-          child: CupertinoPageScaffold(
+        CupertinoPageScaffold(
+          child: SafeArea(
+            bottom: false,
             child: Column(
               children: [
                 Expanded(
@@ -78,7 +79,7 @@ class FoodListPage extends StatelessWidget {
         ),
         if (basketFoodCount != 0)
           Positioned(
-            bottom: 74,
+            bottom: 74 + MediaQuery.of(context).viewPadding.bottom,
             left: 0,
             right: 0,
             child: OrderButton(
